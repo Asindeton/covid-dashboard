@@ -1,11 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="wrapper"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID-19 Dashboard</title>
+    <link rel="shortcut icon" href="./assets/favicon.ico">
+    <script src="https://kit.fontawesome.com/5d7e776949.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header class="header container">
+      <div class="upper-controls">
+        <a href="#top" class="main-title">
+          <div class="icon favicon icon_big"></div>
+          <h1 class="title main-title__text">COVID-19 Dashboard</h1>
+        </a>
+        <label class="search">
+          <input type="search" placeholder="Start searching..." class="search__input">
+          <button class="search__button fas fa-search"></button>
+          <ul class="list search__results">
+            <li class="search__link">Russia</li>
+            <li class="search__link">Russia</li>
+            <li class="search__link">Russia</li>
+            <li class="search__link">Russia</li>
+            <li class="search__link">Russia</li>
+            <li class="search__link">Russia</li>
+            <li class="search__link">Russia</li>
+            <li class="search__link">Russia</li> 
+          </ul>
+        </label>
+        <button class="menu__button fas fa-bars"></button>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container global-cases">
+        <div class="inside-wrapper">
+          <h2 class="title global-cases__title">Global Cases</h2>
+          <span class="cases global-cases__number">50 812 345</span>
+        </div>
+        <button class="fullscreen"></button>
+      </div>
+      <div class="container cases-by">
+        <div class="inside-wrapper">
+        <h2 class="title cases-by__title">
+          Cases by Country/ <br />Region/Sovereignty
+        </h2>
+        <ul class="list">
+          <!--<li class="list__link"><span class="cases">1234</span>Russia</li>-->
+          <li class="list__link"><span class="cases">1234</span>Russia</li>
+          <li class="list__link"><span class="cases">2131</span>Russia</li>
+          <li class="list__link"><span class="cases">12312</span>Russia</li>
+          <li class="list__link"><span class="cases">1231</span>Russia</li>
+          <li class="list__link"><span class="cases">34234</span>Russia</li>
+          <li class="list__link"><span class="cases">10240</span>Russia</li>
+          <li class="list__link"><span class="cases">1212</span>Russia</li>
+          <li class="list__link"><span class="cases">1312</span>Russia</li>
+          <li class="list__link"><span class="cases">24124</span>Russia</li>
+          <li class="list__link"><span class="cases">24124</span>Russia</li>
+          <li class="list__link"><span class="cases">24124</span>Russia</li>
+          <li class="list__link"><span class="cases">24124</span>Russia</li>
+        </ul>
+      </div>
+      <button class="fullscreen"></button>
+      </div>
+      </div>
+      <div class="container map">
+        <div class="inside-wrapper"></div>
+        <button class="fullscreen"></button>
+      </div>
+      <div class="detailed-stat">
+        <div class="container global-deaths">
+          <div class="inside-wrapper">
+          <h2 class="title global-deaths__title">Global Deaths</h2>
+          <span class="cases global-deaths__number">1 262 372</span>
+          <ul class="list">
+            <!--<li class="list__link"><span class="cases">1234</span>Russia</li>-->
+            <li class="list__link"><span class="cases">1234</span>Russia</li>
+            <li class="list__link"><span class="cases">2131</span>Russia</li>
+            <li class="list__link"><span class="cases">12312</span>Russia</li>
+            <li class="list__link"><span class="cases">1231</span>Russia</li>
+            <li class="list__link"><span class="cases">34234</span>Russia</li>
+            <li class="list__link"><span class="cases">10240</span>Russia</li>
+            <li class="list__link"><span class="cases">1212</span>Russia</li>
+            <li class="list__link"><span class="cases">1312</span>Russia</li>
+            <li class="list__link"><span class="cases">24124</span>Russia</li>
+            <li class="list__link"><span class="cases">24124</span>Russia</li>
+            <li class="list__link"><span class="cases">24124</span>Russia</li>
+            <li class="list__link"><span class="cases">24124</span>Russia</li>
+          </ul>
+        </div>
+        <button class="fullscreen"></button>
+        </div>
+        <div class="container deaths-recovered">
+          <div class="inside-wrapper">
+          <span class="title deaths-recovered__subtitle">US state level</span>
+          <h2 class="cases deaths-recovered__title">Deaths, recovered</h2>
+          <ul class="list">
+            <!--<li class="list__link"><span class="cases">1234</span><span class="cases">1234</span>Russia</li>-->
+            <li class="list__link">
+              <span class="cases">1234</span><span class="cases">1234</span>
+              Russia
+            </li>
+            <li class="list__link">
+              <span class="cases">1234</span><span class="cases">1234</span>
+              Russia
+            </li>
+            <li class="list__link">
+              <span class="cases">1234</span><span class="cases">1234</span>
+              Russia
+            </li>
+            <li class="list__link">
+              <span class="cases">1234</span><span class="cases">1234</span>
+              Russia
+            </li>
+            <li class="list__link">
+              <span class="cases">1234</span><span class="cases">1234</span>
+              Russia
+            </li>
+            <li class="list__link">
+              <span class="cases">1234</span><span class="cases">1234</span>
+              Russia
+            </li>
+            <li class="list__link">
+              <span class="cases">1234</span><span class="cases">1234</span>
+              Russia
+            </li>
+          </ul>
+        </div>
+        <button class="fullscreen"></button>
+        </div>
+      </div>
+      <div class="container graph">
+        <div class="inside-wrapper"></div>
+        <button class="fullscreen"></button>
+      </div>
+    </main>
+    <footer class="footer container">
+      <div class="wrapper">
+        <a href="https://rs.school/">
+          <div class="icon rs-school"></div>
+        </a>
+        <a href="https://github.com/andreyhub09">
+        <div class="author">
+          <div class="icon github"></div>
+          Andrey
+        </div>
+      </a>
+      <a href="https://github.com/Artem-Kalugin">
+        <div class="author">
+          <div class="icon github"></div>
+          Artem
+        </div>
+        </a>
+        <a href="https://github.com/asindeton">
+        <div class="author">
+          <div class="icon github"></div>
+          Dmitry
+        </div>
+        
+      </a>
+      </div>
+      <div class="creation-year">JS/FE 2020Q3</div>
+    </footer>
+  </body>
 </html>
