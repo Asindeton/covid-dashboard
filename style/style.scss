@@ -8,6 +8,9 @@ $semicol: rgb(185, 189, 189);
 $danger: red;
 $safe: green;
 $textcol: white;
+
+// White Theme
+
 $bgcol: rgb(240, 240, 240);
 $maincol: white;
 $semicol: rgb(34, 34, 34);
@@ -32,8 +35,13 @@ body {
   flex-direction: column;
   align-content: space-between;
 }
+main {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
 
-.fullscreen {
+.fullscreen__toggle {
   background: url("../assets/img/fullscreen-icon_inv.png");
   width: 25px;
   height: 25px;
@@ -57,12 +65,29 @@ body {
   position: relative;
   box-shadow: 2px 2px 5px -3px;
 }
+.fullscreen {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  max-width: 1200px;
+  font-size: 30px;
+}
+.fullscreen .container {
+  box-shadow: none;
+}
 .inside-wrapper {
   padding: 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
+}
+.subtitle {
+  text-align: center;
+  font-size: 1em;
 }
 
 .header,
@@ -71,6 +96,11 @@ body {
   justify-content: center;
   width: 100%;
   height: 60px;
+}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
 }
 
 .main {
@@ -160,7 +190,7 @@ body {
   grid-area: gp;
 }
 
-main > * {
+.main > * {
   margin: 5px;
   border-radius: 5px;
 }
@@ -176,12 +206,16 @@ main > * {
   }
   & .list .cases {
     color: $textcol;
-    &::after {
-      content: " deaths ";
-      display: inline-block;
-      color: grey;
-    }
   }
+}
+.cases_death:after {
+  content: " deaths ";
+  display: inline-block;
+  color: grey;
+}
+.cases_recovered:after {
+  content: " recovered, ";
+  display: inline-block;
 }
 .deaths-recovered {
   &__subtitle {
@@ -195,16 +229,8 @@ main > * {
   }
   & .list .cases {
     color: $textcol;
-    &:nth-child(1)::after {
-      content: " deaths, ";
-      display: inline-block;
-    }
     &:nth-child(2) {
       color: $safe;
-      &::after {
-        content: " recovered, ";
-        display: inline-block;
-      }
     }
   }
 }
@@ -291,8 +317,8 @@ main > * {
   background-image: url("../assets/favicon.png");
 }
 .github {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   background-image: url("../assets/github.png");
 }
 .rs-school {
@@ -373,10 +399,6 @@ main > * {
     }
   }
 }
-.list {
-  &__link {
-  }
-}
 .menu {
   &__button {
     margin-right: 10px;
@@ -386,6 +408,21 @@ main > * {
     background: none;
     color: $semicol;
     font-size: 20px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+.button__close {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 24px;
+  background: 0;
+  border: 0;
+  outline: 0;
+  &:hover {
+    cursor: pointer;
   }
 }
 
@@ -393,11 +430,165 @@ main > * {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 0.9em;
+  font-weight: 300px;
+  padding: 0 5px;
   &:hover {
     cursor: pointer;
+  }
+  &:first-child {
+    margin-left: auto;
   }
 }
 
 .wrapper > a {
   text-decoration: none;
+  &:nth-child(2) {
+    margin-left: auto;
+  }
+}
+
+.hide {
+  display: none;
+}
+.flag {
+  vertical-align: middle;
+}
+.menu {
+  z-index: 3;
+  width: 500px;
+  height: 100vh;
+  transition: 0.3s all ease-in-out;
+  padding: 25px;
+  box-shadow: -2px 2px 5px -3px;
+  &_out-of-screen {
+    position: relative;
+    right: -500px;
+  }
+  &_active {
+    z-index: 3;
+    right: 0px;
+  }
+  &__apply {
+    align-self: center;
+    justify-self: flex-end;
+    margin-top: auto;
+    background: $bgcol;
+    border: 0;
+    box-shadow: 2px 2px 2px -2px rgba($color: #000000, $alpha: 0.4);
+    border-radius: 5px;
+    width: 120px;
+    padding: 3px 10px;
+    transition: 0.3s all ease-out;
+    &:hover {
+      background: $maincol;
+      cursor: pointer;
+    }
+  }
+}
+.menu-title {
+  font-size: 2.5em;
+}
+.menu-subtitle {
+  padding: 5px 0;
+  padding-bottom: 10px;
+}
+.data-controls {
+  display: flex;
+  justify-content: center;
+}
+.changer {
+  flex-basis: 33.3%;
+  border: 0;
+  &__title {
+    text-align: left;
+  }
+
+  &__text {
+    display: block;
+    padding: 3px 0;
+  }
+
+  &__radio {
+    margin-top: 7px;
+    margin-right: 3px;
+  }
+}
+
+.country-controls {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 15px;
+  &__subtitle {
+    padding: 15px 0;
+  }
+}
+.country-changer {
+  padding: 15px 0;
+  &__title {
+  }
+}
+.mode-changer {
+  display: flex;
+  justify-content: center;
+
+  &__mode {
+  }
+  &__country {
+    border: 0;
+    margin-right: 1px;
+    width: 75px;
+    height: 75px;
+    display: Flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s all ease-in-out;
+    background: transparent;
+    outline: 0;
+    z-index: 0;
+    &:hover {
+      cursor: pointer;
+      background: $bgcol;
+      transform: scale(1.1);
+      z-index: 2;
+    }
+    &_active {
+      background: $bgcol;
+    }
+  }
+}
+.flag {
+  &__mode {
+    padding: 5px;
+  }
+  &_global {
+    font-size: 33px;
+  }
+}
+.country-changer {
+  &__list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: hidden;
+    margin-top: 5px;
+  }
+
+  &__country {
+    display: block;
+    width: 74px;
+    height: 75px;
+    border: 0;
+  }
+}
+.menu-wrapper {
+  padding-left: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  position: absolute;
+  right: 0;
 }
