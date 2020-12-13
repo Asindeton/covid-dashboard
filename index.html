@@ -1,11 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="wrapper"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID-19 Dashboard</title>
+    <script
+      src="https://kit.fontawesome.com/5d7e776949.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header class="header container">
+      <div class="upper-controls">
+        <a href="#top" class="main-title">
+          <div class="icon favicon icon_big"></div>
+          <h1 class="title main-title__text">COVID-19 Dashboard</h1>
+        </a>
+        <label class="search">
+          <input
+            type="search"
+            placeholder="Start searching..."
+            class="search__input"
+          />
+          <button class="search__button fas fa-search"></button>
+          <ul class="list search__results">
+            <!--<img
+                src="https://www.countryflags.io/ru/flat/16.png"
+                alt=""
+                class="flag"
+              />
+              Russia
+            </li> -->
+          </ul>
+        </label>
+        <button class="menu__button fas fa-bars"></button>
+      </div>
+    </header>
+    <div class="menu-wrapper">
+      <nav class="menu menu_out-of-screen container">
+        <!--menu_active-->
+        <h2 class="menu-title title">Settings</h2>
+        <h3 class="menu-subtitle subtitle">Change Info</h3>
+        <div class="data-controls">
+          <fieldset class="changer">
+            <legend class="changer__title title">Cases</legend>
+            <label class="changer__text">
+              <input
+                type="radio"
+                class="changer__radio"
+                name="cases"
+                value="Confirmed"
+              />Confirmed
+            </label>
+            <label class="changer__text">
+              <input
+                type="radio"
+                class="changer__radio"
+                name="cases"
+                value="Lethal"
+              />Lethal
+            </label>
+            <label class="changer__text">
+              <input
+                type="radio"
+                class="changer__radio"
+                name="cases"
+                value="Recovered"
+              />Recovered
+            </label>
+          </fieldset>
+          <fieldset class="changer">
+            <legend class="changer__title title">Population</legend>
+            <label class="changer__text">
+              <input
+                type="radio"
+                class="changer__radio"
+                name="population"
+                value="absolute"
+              />Absolute Value
+            </label>
+            <label class="changer__text">
+              <input
+                type="radio"
+                class="changer__radio"
+                name="population"
+                value="relative"
+              />Per 100 000
+            </label>
+          </fieldset>
+          <fieldset class="changer">
+            <legend class="changer__title title">Time</legend>
+            <label class="changer__text">
+              <input
+                type="radio"
+                class="changer__radio"
+                name="time"
+                value="allTime"
+              />All Time
+            </label>
+            <label class="changer__text">
+              <input
+                type="radio"
+                class="changer__radio"
+                name="time"
+                value="lastDay"
+              />Last Day
+            </label>
+          </fieldset>
+        </div>
+        <div class="country-controls">
+          <h3 class="country-controls__subtitle subtitle">Change Region</h3>
+          <div class="country-changer">
+            <div class="mode-changer">
+              <button
+                class="mode-changer__mode mode-changer__country mode-changer__country_active"
+              >
+                <div
+                  alt=""
+                  class="fas fa-globe-americas flag__mode flag_global"
+                ></div>
+                Global
+              </button>
+              <button class="mode-changer__mode mode-changer__country">
+                <img
+                  src="https://www.countryflags.io/by/flat/32.png"
+                  alt=""
+                  class="flag flag__mode"
+                />
+                Country
+              </button>
+            </div>
+          </div>
+          <ul class="list country-changer__list">
+            <!--<li class="list__link country-changer__country">
+            <button
+              class="mode-changer__mode mode-changer__country mode-changer_active"
+            >
+              <img
+                src="https://www.countryflags.io/by/flat/32.png"
+                alt=""
+                class="flag flag__mode"
+              />
+              Country
+            </button>
+          </li>-->
+          </ul>
+        </div>
+        <button class="menu__apply">Apply changes</button>
+        <button class="fas fa-times button__close"></button>
+      </nav>
+    </div>
+    <main>
+      <div class="main">
+        <div class="container global-cases">
+          <div class="inside-wrapper">
+            <h2 class="subtitle global-cases__title">Global Cases</h2>
+            <span class="title global-cases__number">50 812 345</span>
+          </div>
+          <button class="fullscreen__toggle hide"></button>
+        </div>
+        <div class="container cases-by">
+          <div class="inside-wrapper">
+            <h2 class="subtitle cases-by__title">
+              Cases by Country/ <br />Region/Sovereignty
+            </h2>
+            <ul class="list">
+              <!--<li class="list__link"><span class="cases">1234</span>Russia</li>-->
+              <li class="list__link"><span class="cases">1234</span>Russia</li>
+              <li class="list__link"><span class="cases">2131</span>Russia</li>
+              <li class="list__link"><span class="cases">12312</span>Russia</li>
+              <li class="list__link"><span class="cases">1231</span>Russia</li>
+              <li class="list__link"><span class="cases">34234</span>Russia</li>
+              <li class="list__link"><span class="cases">10240</span>Russia</li>
+              <li class="list__link"><span class="cases">1212</span>Russia</li>
+              <li class="list__link"><span class="cases">1312</span>Russia</li>
+              <li class="list__link"><span class="cases">24124</span>Russia</li>
+              <li class="list__link"><span class="cases">24124</span>Russia</li>
+              <li class="list__link"><span class="cases">24124</span>Russia</li>
+              <li class="list__link"><span class="cases">24124</span>Russia</li>
+            </ul>
+          </div>
+          <button class="fullscreen__toggle hide"></button>
+        </div>
+        <div class="container map">
+          <div class="inside-wrapper"></div>
+          <button class="fullscreen__toggle hide"></button>
+        </div>
+        <div class="detailed-stat">
+          <div class="container global-deaths">
+            <div class="inside-wrapper">
+              <h2 class="subtitle global-deaths__title">Global Deaths</h2>
+              <span class="title cases global-deaths__number">1 262 372</span>
+              <ul class="list">
+                <!--<li class="list__link"><span class="cases cases_death">1234</span>Russia</li>-->
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">2131</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">12312</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1231</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">2131</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">12312</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1231</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">2131</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">12312</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1231</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">2131</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">12312</span>Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1231</span>Russia
+                </li>
+              </ul>
+            </div>
+            <button class="fullscreen__toggle hide"></button>
+          </div>
+          <div class="container deaths-recovered">
+            <div class="inside-wrapper">
+              <span class="subtitle deaths-recovered__subtitle"
+                >US state level</span
+              >
+              <h2 class="title cases deaths-recovered__title">
+                Deaths, recovered
+              </h2>
+              <ul class="list">
+                <!-- <li class="list__link">
+                  <span class="cases cases_death">123</span>
+                  <span class="cases cases_recovered">1234</span>
+                  Russia
+                </li> -->
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+                <li class="list__link">
+                  <span class="cases cases_death">1234</span
+                  ><span class="cases cases_recovered">1234</span>
+                  Russia
+                </li>
+              </ul>
+            </div>
+            <button class="fullscreen__toggle hide"></button>
+          </div>
+        </div>
+        <div class="container graph">
+          <button class="fullscreen__toggle hide"></button>
+        </div>
+      </div>
+      <div class="fullscreen container hide">
+        <div class="container deaths-recovered">
+          <div class="inside-wrapper">
+            <span class="subtitle deaths-recovered__subtitle"
+              >US state level</span
+            >
+            <h2 class="title cases deaths-recovered__title">
+              Deaths, recovered
+            </h2>
+            <ul class="list">
+              <!--<li class="list__link"><span class="cases cases_death">1234</span><span class="cases cases_recovered">1234</span>Russia</li>-->
+              <li class="list__link">
+                <span class="cases cases_death">1234</span
+                ><span class="cases cases_recovered">1234</span>
+                Russia
+              </li>
+              <li class="list__link">
+                <span class="cases cases_death">1234</span
+                ><span class="cases">1234</span>
+                Russia
+              </li>
+              <li class="list__link">
+                <span class="cases cases_death">1234</span
+                ><span class="cases">1234</span>
+                Russia
+              </li>
+              <li class="list__link">
+                <span class="cases">1234</span><span class="cases">1234</span>
+                Russia
+              </li>
+              <li class="list__link">
+                <span class="cases">1234</span><span class="cases">1234</span>
+                Russia
+              </li>
+              <li class="list__link">
+                <span class="cases">1234</span><span class="cases">1234</span>
+                Russia
+              </li>
+              <li class="list__link">
+                <span class="cases">1234</span><span class="cases">1234</span>
+                Russia
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button class="fas fa-times button__close"></button>
+      </div>
+    </main>
+    <footer class="footer container">
+      <div class="wrapper">
+        <a href="https://rs.school/">
+          <div class="icon rs-school"></div>
+        </a>
+        <a href="https://github.com/andreyhub09">
+          <div class="author">
+            <div class="icon github"></div>
+            Andrey
+          </div>
+        </a>
+        <a href="https://github.com/Artem-Kalugin">
+          <div class="author">
+            <div class="icon github"></div>
+            Artem
+          </div>
+        </a>
+        <a href="https://github.com/asindeton">
+          <div class="author">
+            <div class="icon github"></div>
+            Dmitry
+          </div>
+        </a>
+      </div>
+      <div class="creation-year">JS/FE 2020Q3</div>
+    </footer>
+  </body>
 </html>

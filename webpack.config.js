@@ -53,6 +53,10 @@ module.exports = {
         test: /\.otf$/,
         use: ['file-loader'],
       },
+      {
+        test: /\.ttf$/,
+        use: ['file-loader'],
+      },
     ],
   },
 };
