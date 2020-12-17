@@ -216,6 +216,7 @@ main {
 .cases_recovered:after {
   content: " recovered, ";
   display: inline-block;
+  color: $safe;
 }
 .deaths-recovered {
   &__subtitle {
@@ -227,11 +228,9 @@ main {
     text-align: center;
     color: $textcol;
   }
+
   & .list .cases {
     color: $textcol;
-    &:nth-child(2) {
-      color: $safe;
-    }
   }
 }
 
@@ -587,7 +586,6 @@ main {
 }
 .menu-wrapper {
   padding-left: 5px;
-  padding-bottom: 5px;
   overflow-x: hidden;
   position: absolute;
   right: 0;
