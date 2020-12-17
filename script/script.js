@@ -1,5 +1,5 @@
 import '../style/style.scss';
-import {testVar} from './module';
+import Dashboard from './components/Dashboard';
 
-console.log('Скрипт подключен')
-console.log(testVar);
+const dashboard = new Dashboard();
+dashboard.updateDashboard();
