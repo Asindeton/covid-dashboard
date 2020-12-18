@@ -1,11 +1,13 @@
 import DataService from './DataService';
 import numberFormatter from '../utils/formatter';
 import createHtmlElement from '../utils/create';
+import SearchElement from './SearchElement';
 
 export default class Dashboard {
   constructor() {
     this.generateDashboard();
     this.addEventsHandlers();
+    this.searchElement = new SearchElement();
   }
 
   generateDashboard() {
@@ -20,7 +22,7 @@ export default class Dashboard {
   }
 
   addEventsHandlers() {
-
+    this.handleSearch();
   }
 
   async updateDashboard() {
@@ -132,5 +134,17 @@ export default class Dashboard {
           ], null));
       }
     }
+  }
+
+  handleSearch() {
+    document.querySelector('.search__results').addEventListener('mousedown', (e) => {
+      const eventContainer = e.target.closest('.search__link');
+      if (eventContainer) {
+        this.region = eventContainer.querySelector('.search__country').innerText;
+        this.searchElement.clearResults();
+        this.searchElement.clearInput();
+        console.log(this.region);
+      }
+    }, true);
   }
 }

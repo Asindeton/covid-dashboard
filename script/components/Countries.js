@@ -191,7 +191,7 @@ const countries = [
   { name: 'Sao Tome and Principe', code: 'ST' },
   { name: 'Saudi Arabia', code: 'SA' },
   { name: 'Senegal', code: 'SN' },
-  { name: 'Serbia and Montenegro', code: 'CS' },
+  { name: 'Serbia and Montenegro', code: 'RS' },
   { name: 'Seychelles', code: 'SC' },
   { name: 'Sierra Leone', code: 'SL' },
   { name: 'Singapore', code: 'SG' },

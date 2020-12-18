@@ -42,14 +42,21 @@ export default class SearchElement {
     this.results.innerHTML = '';
   }
 
+  clearInput() {
+    this.input.value = '';
+  }
+
   createLink(name, code) {
     const li = document.createElement('li');
     const img = document.createElement('img');
+    const span = document.createElement('span');
     img.classList.add('flag');
     li.classList.add('search__link');
+    span.classList.add('search__country');
+    span.innerText = name;
     img.src = `https://www.countryflags.io/${code}/flat/16.png`;
     li.appendChild(img);
-    li.insertAdjacentText('beforeend', name);
+    li.appendChild(span);
     this.results.appendChild(li);
   }
 }
