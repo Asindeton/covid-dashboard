@@ -137,13 +137,12 @@ export default class Dashboard {
   }
 
   handleSearch() {
-    document.querySelector('.search__results').addEventListener('mousedown', (e) => {
+    this.searchElement.results.addEventListener('mousedown', (e) => {
       const eventContainer = e.target.closest('.search__link');
       if (eventContainer) {
         this.region = eventContainer.querySelector('.search__country').innerText;
         this.searchElement.clearResults();
         this.searchElement.clearInput();
-        console.log(this.region);
       }
     }, true);
   }
