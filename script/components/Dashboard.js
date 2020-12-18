@@ -5,9 +5,9 @@ import SearchElement from './SearchElement';
 
 export default class Dashboard {
   constructor() {
+    this.searchElement = new SearchElement();
     this.generateDashboard();
     this.addEventsHandlers();
-    this.searchElement = new SearchElement();
   }
 
   generateDashboard() {
