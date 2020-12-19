@@ -1,4 +1,5 @@
 import countries from './Countries';
+import createHtmlElement from '../utils/create';
 
 export default class SearchElement {
   constructor() {
@@ -47,15 +48,11 @@ export default class SearchElement {
   }
 
   createLink(name, code) {
-    const li = document.createElement('li');
-    const img = document.createElement('img');
-    const span = document.createElement('span');
-    img.classList.add('flag');
-    li.classList.add('search__link');
-    span.classList.add('search__country');
+    const li = createHtmlElement('li', 'search__link', [
+      createHtmlElement('img', 'flag', null, null, ['src', `https://www.countryflags.io/${code}/flat/16.png`]),
+    ]);
+    const span = createHtmlElement('span', 'search__country');
     span.innerText = name;
-    img.src = `https://www.countryflags.io/${code}/flat/16.png`;
-    li.appendChild(img);
     li.appendChild(span);
     this.results.appendChild(li);
   }
