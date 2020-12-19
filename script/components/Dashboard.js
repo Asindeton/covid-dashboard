@@ -3,6 +3,8 @@ import numberFormatter from '../utils/formatter';
 import createHtmlElement from '../utils/create';
 import SearchElement from './SearchElement';
 import Menu from './Menu';
+import FullscreenButton from './FullscreenButton';
+import FullscreenContainer from './FullscreenContainer';
 
 export default class Dashboard {
   constructor() {
@@ -11,6 +13,13 @@ export default class Dashboard {
     this.state = this.getStateFromMenu();
     this.generateDashboard();
     this.addEventsHandlers();
+
+    ///
+    this.fullscreenContainer = new FullscreenContainer();
+    document.querySelector('.main').querySelectorAll('.container').forEach((el) => {
+      const fullscreenButton = new FullscreenButton(el, this.fullscreenContainer);
+    });
+    ///
   }
 
   generateDashboard() {
@@ -144,9 +153,12 @@ export default class Dashboard {
     this.searchElement.results.addEventListener('mousedown', (e) => {
       const eventContainer = e.target.closest('.search__link');
       if (eventContainer) {
-        this.region = eventContainer.querySelector('.search__country').innerText;
+        this.state.region = eventContainer.querySelector('.search__country').innerText;
         this.searchElement.clearResults();
         this.searchElement.clearInput();
+        this.searchElement.keyboard.properties.value = '';
+        this.searchElement.keyboard.properties.secondValue = '';
+        this.searchElement.keyboard.close();
       }
     }, true);
   }
@@ -159,7 +171,6 @@ export default class Dashboard {
   }
 
   getStateFromMenu() {
-    this.state = this.menu.getState();
-    console.log(this.state);
+    return this.menu.getState();
   }
 }

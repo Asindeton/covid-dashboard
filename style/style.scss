@@ -71,12 +71,16 @@ main {
 .fullscreen {
   display: flex;
   width: 100vw;
+  justify-content: center;
   height: 100%;
   position: absolute;
   top: 0;
   z-index: 2;
   max-width: 1200px;
   font-size: 30px;
+  & > .container {
+    overflow: hidden;
+  }
 }
 
 .fullscreen .container {
@@ -463,6 +467,19 @@ main {
     &:hover {
       cursor: pointer;
     }
+  }
+}
+.button__close {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 24px;
+  background: 0;
+  border: 0;
+  outline: 0;
+
+  &:hover {
+    cursor: pointer;
   }
 }
 

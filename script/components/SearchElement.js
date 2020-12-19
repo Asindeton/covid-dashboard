@@ -1,11 +1,13 @@
 import countries from './Countries';
 import createHtmlElement from '../utils/create';
+import VirtualKeyboard from './VirtualKeyboard';
 
 export default class SearchElement {
   constructor() {
     this.searchButton = document.querySelector('.search__button');
     this.input = document.querySelector('.search__input');
     this.results = document.querySelector('.search__results');
+    this.keyboard = new VirtualKeyboard();
     this.addEventHandlers();
   }
 
@@ -18,6 +20,10 @@ export default class SearchElement {
     });
     this.input.addEventListener('blur', () => {
       this.clearResults();
+    });
+    this.input.addEventListener('search', () => {
+      this.keyboard.properties.value = '';
+      this.keyboard.properties.secondValue = '';
     });
     this.searchButton.addEventListener('click', () => {
       this.fillResults(this.input.value);

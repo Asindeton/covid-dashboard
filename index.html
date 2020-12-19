@@ -8,6 +8,11 @@
       src="https://kit.fontawesome.com/5d7e776949.js"
       crossorigin="anonymous"
     ></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
   </head>
   <body>
     <header class="header container">
@@ -20,7 +25,7 @@
           <input
             type="search"
             placeholder="Start searching..."
-            class="search__input"
+            class="search__input use-keyboard-input"
           />
           <button class="search__button fas fa-search"></button>
           <ul class="list search__results"></ul>
@@ -41,8 +46,16 @@
                 type="radio"
                 class="changer__radio"
                 name="cases"
-                value="confirmed"
+                value="all"
                 checked
+              />All
+            </label>
+            <label class="changer__text">
+              <input
+                type="radio"
+                class="changer__radio"
+                name="cases"
+                value="confirmed"
               />Confirmed
             </label>
             <label class="changer__text">
@@ -316,50 +329,6 @@
         </div>
       </div>
       <div class="fullscreen container hide">
-        <div class="container deaths-recovered">
-          <div class="inside-wrapper">
-            <span class="subtitle deaths-recovered__subtitle"
-              >US state level</span
-            >
-            <h2 class="title cases deaths-recovered__title">
-              Deaths, recovered
-            </h2>
-            <ul class="list">
-              <!--<li class="list__link"><span class="cases cases_death">1234</span><span class="cases cases_recovered">1234</span>Russia</li>-->
-              <li class="list__link">
-                <span class="cases cases_death">1234</span
-                ><span class="cases cases_recovered">1234</span>
-                Russia
-              </li>
-              <li class="list__link">
-                <span class="cases cases_death">1234</span
-                ><span class="cases">1234</span>
-                Russia
-              </li>
-              <li class="list__link">
-                <span class="cases cases_death">1234</span
-                ><span class="cases">1234</span>
-                Russia
-              </li>
-              <li class="list__link">
-                <span class="cases">1234</span><span class="cases">1234</span>
-                Russia
-              </li>
-              <li class="list__link">
-                <span class="cases">1234</span><span class="cases">1234</span>
-                Russia
-              </li>
-              <li class="list__link">
-                <span class="cases">1234</span><span class="cases">1234</span>
-                Russia
-              </li>
-              <li class="list__link">
-                <span class="cases">1234</span><span class="cases">1234</span>
-                Russia
-              </li>
-            </ul>
-          </div>
-        </div>
         <button class="fas fa-times button__close"></button>
       </div>
     </main>
