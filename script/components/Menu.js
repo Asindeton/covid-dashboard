@@ -30,7 +30,6 @@ export default class Menu {
     });
     this.globalModeButton.addEventListener('click', () => {
       this.isCountry = false;
-      this.regionEl = this.globalModeButton;
       this.countryList.classList.add('hide');
       this.globalModeButton.classList.add('mode-changer__button_active');
       this.countryModeButton.classList.remove('mode-changer__button_active');
