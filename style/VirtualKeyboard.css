@@ -1,0 +1,105 @@
+.use-keyboard-input {
+}
+
+.keyboard {
+  z-index: 5;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 0;
+  background: #e6e6e6;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  transition: bottom 0.4s;
+}
+
+.keyboard--hidden {
+  bottom: -100%;
+}
+
+.keyboard__keys {
+  text-align: center;
+}
+
+.keyboard__key {
+  height: 45px;
+  width: 6%;
+  max-width: 90px;
+  margin: 3px;
+  border-radius: 4px;
+  border: none;
+  background: #f9f9f9;
+  color: #7c7c7c;
+  font-size: 1.05rem;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  box-shadow: 8px 9px 15px -4px rgba(0, 0, 0, 0.1);
+  transition: all 0.05s ease-in-out;
+}
+.keyboard__key__active {
+  background: #eeeeee;
+  box-shadow: none;
+}
+
+.keyboard__key--wide {
+  width: 12%;
+}
+.keyboard__key--advwide {
+  width: 18%;
+}
+
+.keyboard__key--extra-wide {
+  width: 36%;
+  max-width: 500px;
+}
+
+.keyboard__key--activatable::after {
+  content: "";
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #e8e8e8;
+  border-radius: 50%;
+}
+
+.keyboard__key--active::after {
+  background: #08ff00;
+}
+
+.keyboard__key--dark {
+  background: rgba(0, 0, 0, 0.25);
+}
+.keyboard-cp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 40px;
+  width: 100%;
+}
+.keyboard-cp__element {
+  flex-basis: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.keyboard-cp__element i {
+  transition: all 0.1s ease-in-out;
+}
+.keyboard-cp__element i:hover {
+  cursor: pointer;
+  color: #666666;
+}
+
+.keyboard-cp__element__active {
+  opacity: 0.2;
+}
