@@ -312,9 +312,6 @@ export default class Keyboard {
             }
             setTimeout(() => { keyElement.classList.toggle('keyboard__key__active'); }, 240);
           });
-          if (this.properties.sound) {
-            this.elements.audioContainer[12 + (this.properties.langRu ? 5 : 0)].play();
-          }
           break;
         case 'nav-bef':
           keyElement.classList.add('keyboard__key--wide');

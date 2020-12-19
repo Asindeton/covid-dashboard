@@ -153,9 +153,12 @@ export default class Dashboard {
     this.searchElement.results.addEventListener('mousedown', (e) => {
       const eventContainer = e.target.closest('.search__link');
       if (eventContainer) {
-        this.region = eventContainer.querySelector('.search__country').innerText;
+        this.state.region = eventContainer.querySelector('.search__country').innerText;
         this.searchElement.clearResults();
         this.searchElement.clearInput();
+        this.searchElement.keyboard.properties.value = '';
+        this.searchElement.keyboard.properties.secondValue = '';
+        this.searchElement.keyboard.close();
       }
     }, true);
   }
@@ -168,6 +171,6 @@ export default class Dashboard {
   }
 
   getStateFromMenu() {
-    this.state = this.menu.getState();
+    return this.menu.getState();
   }
 }

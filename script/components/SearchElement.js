@@ -22,6 +22,8 @@ export default class SearchElement {
       this.clearResults();
     });
     this.input.addEventListener('search', () => {
+      this.keyboard.properties.value = '';
+      this.keyboard.properties.secondValue = '';
     });
     this.searchButton.addEventListener('click', () => {
       this.fillResults(this.input.value);
