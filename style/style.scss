@@ -35,6 +35,7 @@ body {
   flex-direction: column;
   align-content: space-between;
 }
+
 main {
   display: flex;
   justify-content: center;
@@ -52,6 +53,7 @@ main {
   top: -12.5px;
   right: -12.5px;
   z-index: 2;
+
   &:hover {
     cursor: pointer;
   }
@@ -65,6 +67,7 @@ main {
   position: relative;
   box-shadow: 2px 2px 5px -3px;
 }
+
 .fullscreen {
   display: flex;
   width: 100vw;
@@ -75,9 +78,11 @@ main {
   max-width: 1200px;
   font-size: 30px;
 }
+
 .fullscreen .container {
   box-shadow: none;
 }
+
 .inside-wrapper {
   padding: 10px 0;
   display: flex;
@@ -85,6 +90,7 @@ main {
   justify-content: flex-start;
   overflow: hidden;
 }
+
 .subtitle {
   text-align: center;
   font-size: 1em;
@@ -97,6 +103,7 @@ main {
   width: 100%;
   height: 60px;
 }
+
 .header {
   position: sticky;
   top: 0;
@@ -118,23 +125,29 @@ main {
     "cb cb map map map map map map gp gp gp"
     "cb cb map map map map map map gp gp gp";
 }
+
 .footer {
   height: 80px;
 }
+
 .creation-year {
   margin: 0 auto;
 }
+
 .title {
   font-size: 1em;
   text-align: center;
 }
+
 .global-cases {
   grid-area: gc;
   justify-content: center;
   align-items: center;
+
   &__title {
     font-size: 1em;
   }
+
   &__number {
     font-size: 1.5em;
     color: $danger;
@@ -143,6 +156,7 @@ main {
 
 .cases-by {
   grid-area: cb;
+
   &__title {
     font-size: 0.9em;
   }
@@ -152,6 +166,7 @@ main {
   overflow: auto;
   margin: 5px;
   padding: 5px;
+
   &__link {
     font-size: 0.8em;
     min-height: 20px;
@@ -160,12 +175,15 @@ main {
     width: 100%;
     padding: 2px 5px;
   }
+
   &::-webkit-scrollbar {
     width: 5px;
   }
+
   &::-webkit-scrollbar-thumb {
     background: rgba($color: $textcol, $alpha: 0.4);
   }
+
   &::-webkit-scrollbar-track {
     background: rgba($color: $textcol, $alpha: 0.1);
   }
@@ -174,6 +192,7 @@ main {
 .cases {
   color: $danger;
   font-weight: 600;
+
   &::after {
     content: " ";
     white-space: pre;
@@ -183,9 +202,11 @@ main {
 .map {
   grid-area: map;
 }
+
 .detailed-stat {
   grid-area: ds;
 }
+
 .graph {
   grid-area: gp;
 }
@@ -200,24 +221,29 @@ main {
     font-size: 1.5em;
     text-align: center;
     color: $textcol;
+
     &::after {
       content: "";
     }
   }
+
   & .list .cases {
     color: $textcol;
   }
 }
+
 .cases_death:after {
   content: " deaths ";
   display: inline-block;
   color: grey;
 }
+
 .cases_recovered:after {
   content: " recovered, ";
   display: inline-block;
   color: $safe;
 }
+
 .deaths-recovered {
   &__subtitle {
     font-size: 0.7em;
@@ -238,6 +264,7 @@ main {
   display: flex;
   flex-direction: row;
   margin: 0;
+
   & > * {
     margin: 5px 5px;
     border-radius: 5px;
@@ -274,9 +301,11 @@ main {
       "ds ds"
       "ds ds";
   }
+
   .main-title {
     font-size: 0.75em;
   }
+
   .inside-wrapper {
     padding: 5px 0;
   }
@@ -307,32 +336,39 @@ main {
   width: 20px;
   display: inline-block;
   margin-right: 5px;
+
   &_big {
     width: 50px;
     height: 50px;
   }
 }
+
 .favicon {
   background-image: url("../assets/favicon.png");
 }
+
 .github {
   width: 30px;
   height: 30px;
   background-image: url("../assets/github.png");
 }
+
 .rs-school {
   width: 80px;
   height: 30px;
   background-image: url("https://rs.school/images/rs_school_js.svg");
 }
+
 .main-title {
   display: flex;
   align-items: center;
+  text-decoration: none;
+
   &__text {
     font-size: 1.74em;
   }
-  text-decoration: none;
 }
+
 .search {
   border-radius: 20px;
   background: $bgcol;
@@ -344,8 +380,8 @@ main {
   align-items: center;
   margin-left: auto;
   margin-right: 10px;
-
   position: relative;
+
   &__input {
     margin-left: 10px;
     height: 20px;
@@ -366,6 +402,7 @@ main {
     background-color: $bgcol;
     color: $semicol;
     transition: 0.5s all ease-in-out;
+
     &:hover {
       background-color: $maincol;
       cursor: pointer;
@@ -392,6 +429,7 @@ main {
     color: $semicol;
     background-color: $maincol;
     transition: 0.3s all ease-in-out;
+
     &:hover {
       cursor: pointer;
       background-color: $bgcol;
@@ -399,7 +437,7 @@ main {
   }
 }
 .menu {
-  &__button {
+  &__button-show {
     margin-right: 10px;
     margin-top: 5px;
     border: none;
@@ -407,21 +445,24 @@ main {
     background: none;
     color: $semicol;
     font-size: 20px;
+
     &:hover {
       cursor: pointer;
     }
   }
-}
-.button__close {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  font-size: 24px;
-  background: 0;
-  border: 0;
-  outline: 0;
-  &:hover {
-    cursor: pointer;
+
+  &__button-close {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    font-size: 24px;
+    background: 0;
+    border: 0;
+    outline: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -432,9 +473,11 @@ main {
   font-size: 0.9em;
   font-weight: 300px;
   padding: 0 5px;
+
   &:hover {
     cursor: pointer;
   }
+
   &:first-child {
     margin-left: auto;
   }
@@ -442,17 +485,16 @@ main {
 
 .wrapper > a {
   text-decoration: none;
+
   &:nth-child(2) {
     margin-left: auto;
   }
 }
 
-.hide {
-  display: none;
-}
 .flag {
   vertical-align: middle;
 }
+
 .menu {
   z-index: 3;
   width: 500px;
@@ -460,14 +502,18 @@ main {
   transition: 0.3s all ease-in-out;
   padding: 25px;
   box-shadow: -2px 2px 5px -3px;
+
   &_out-of-screen {
-    position: relative;
+    position: fixed;
+    top: 0;
     right: -500px;
   }
+
   &_active {
     z-index: 3;
     right: 0px;
   }
+
   &__apply {
     align-self: center;
     justify-self: flex-end;
@@ -479,26 +525,32 @@ main {
     width: 120px;
     padding: 3px 10px;
     transition: 0.3s all ease-out;
+
     &:hover {
       background: $maincol;
       cursor: pointer;
     }
   }
 }
+
 .menu-title {
   font-size: 2.5em;
 }
+
 .menu-subtitle {
   padding: 5px 0;
   padding-bottom: 10px;
 }
+
 .data-controls {
   display: flex;
   justify-content: center;
 }
+
 .changer {
   flex-basis: 33.3%;
   border: 0;
+
   &__title {
     text-align: left;
   }
@@ -519,53 +571,61 @@ main {
   flex-direction: column;
   overflow: hidden;
   padding-bottom: 15px;
+
   &__subtitle {
     padding: 15px 0;
   }
 }
+
 .country-changer {
   padding: 15px 0;
-  &__title {
-  }
 }
+
 .mode-changer {
   display: flex;
   justify-content: center;
 
-  &__mode {
-  }
-  &__country {
+  &__button {
     border: 0;
     margin-right: 1px;
     width: 75px;
-    height: 75px;
     display: Flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: 0.3s all ease-in-out;
+    transition: 0.1s all ease-in-out;
     background: transparent;
     outline: 0;
     z-index: 0;
+
     &:hover {
       cursor: pointer;
       background: $bgcol;
       transform: scale(1.1);
       z-index: 2;
     }
+
     &_active {
       background: $bgcol;
     }
   }
+
+  &__country {
+    font-size: 0.8em;
+    justify-content: flex-start;
+  }
 }
+
 .flag {
   &__mode {
     padding: 5px;
   }
+
   &_global {
     font-size: 33px;
   }
 }
+
 .country-changer {
   &__list {
     margin: 0;
@@ -580,13 +640,17 @@ main {
   &__country {
     display: block;
     width: 74px;
-    height: 75px;
     border: 0;
   }
 }
+
 .menu-wrapper {
   padding-left: 5px;
   overflow-x: hidden;
   position: absolute;
   right: 0;
+}
+
+.hide {
+  display: none;
 }

@@ -1,9 +1,14 @@
 import DataService from './DataService';
 import numberFormatter from '../utils/formatter';
 import createHtmlElement from '../utils/create';
+import SearchElement from './SearchElement';
+import Menu from './Menu';
 
 export default class Dashboard {
   constructor() {
+    this.searchElement = new SearchElement();
+    this.menu = new Menu();
+    this.state = this.getStateFromMenu();
     this.generateDashboard();
     this.addEventsHandlers();
   }
@@ -20,7 +25,8 @@ export default class Dashboard {
   }
 
   addEventsHandlers() {
-
+    this.handleSearch();
+    this.handleState();
   }
 
   async updateDashboard() {
@@ -132,5 +138,28 @@ export default class Dashboard {
           ], null));
       }
     }
+  }
+
+  handleSearch() {
+    this.searchElement.results.addEventListener('mousedown', (e) => {
+      const eventContainer = e.target.closest('.search__link');
+      if (eventContainer) {
+        this.region = eventContainer.querySelector('.search__country').innerText;
+        this.searchElement.clearResults();
+        this.searchElement.clearInput();
+      }
+    }, true);
+  }
+
+  handleState() {
+    this.menu.applyButton.addEventListener('mousedown', () => {
+      this.getStateFromMenu();
+      this.menu.menuEl.classList.remove('menu_active');
+    });
+  }
+
+  getStateFromMenu() {
+    this.state = this.menu.getState();
+    console.log(this.state);
   }
 }

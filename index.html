@@ -23,17 +23,9 @@
             class="search__input"
           />
           <button class="search__button fas fa-search"></button>
-          <ul class="list search__results">
-            <!--<img
-                src="https://www.countryflags.io/ru/flat/16.png"
-                alt=""
-                class="flag"
-              />
-              Russia
-            </li> -->
-          </ul>
+          <ul class="list search__results"></ul>
         </label>
-        <button class="menu__button fas fa-bars"></button>
+        <button class="menu__button-show fas fa-bars"></button>
       </div>
     </header>
     <div class="menu-wrapper">
@@ -41,7 +33,7 @@
         <!--menu_active-->
         <h2 class="menu-title title">Settings</h2>
         <h3 class="menu-subtitle subtitle">Change Info</h3>
-        <div class="data-controls">
+        <form class="data-controls">
           <fieldset class="changer">
             <legend class="changer__title title">Cases</legend>
             <label class="changer__text">
@@ -49,7 +41,8 @@
                 type="radio"
                 class="changer__radio"
                 name="cases"
-                value="Confirmed"
+                value="confirmed"
+                checked
               />Confirmed
             </label>
             <label class="changer__text">
@@ -57,7 +50,7 @@
                 type="radio"
                 class="changer__radio"
                 name="cases"
-                value="Lethal"
+                value="lethal"
               />Lethal
             </label>
             <label class="changer__text">
@@ -65,7 +58,7 @@
                 type="radio"
                 class="changer__radio"
                 name="cases"
-                value="Recovered"
+                value="recovered"
               />Recovered
             </label>
           </fieldset>
@@ -77,6 +70,7 @@
                 class="changer__radio"
                 name="population"
                 value="absolute"
+                checked
               />Absolute Value
             </label>
             <label class="changer__text">
@@ -84,7 +78,7 @@
                 type="radio"
                 class="changer__radio"
                 name="population"
-                value="relative"
+                value="formatted"
               />Per 100 000
             </label>
           </fieldset>
@@ -96,6 +90,7 @@
                 class="changer__radio"
                 name="time"
                 value="allTime"
+                checked
               />All Time
             </label>
             <label class="changer__text">
@@ -107,47 +102,35 @@
               />Last Day
             </label>
           </fieldset>
-        </div>
+        </form>
         <div class="country-controls">
           <h3 class="country-controls__subtitle subtitle">Change Region</h3>
           <div class="country-changer">
             <div class="mode-changer">
               <button
-                class="mode-changer__mode mode-changer__country mode-changer__country_active"
+                class="mode__global mode-changer__button mode-changer__button_active"
+                value=""
               >
                 <div
                   alt=""
                   class="fas fa-globe-americas flag__mode flag_global"
                 ></div>
-                Global
+                <span class="mode">Global</span>
               </button>
-              <button class="mode-changer__mode mode-changer__country">
+              <button class="mode__country mode-changer__button">
                 <img
                   src="https://www.countryflags.io/by/flat/32.png"
                   alt=""
                   class="flag flag__mode"
                 />
-                Country
+                <span class="mode">Country</span>
               </button>
             </div>
           </div>
-          <ul class="list country-changer__list">
-            <!--<li class="list__link country-changer__country">
-            <button
-              class="mode-changer__mode mode-changer__country mode-changer_active"
-            >
-              <img
-                src="https://www.countryflags.io/by/flat/32.png"
-                alt=""
-                class="flag flag__mode"
-              />
-              Country
-            </button>
-          </li>-->
-          </ul>
+          <ul class="list country-changer__list hide"></ul>
         </div>
         <button class="menu__apply">Apply changes</button>
-        <button class="fas fa-times button__close"></button>
+        <button class="fas fa-times menu__button-close"></button>
       </nav>
     </div>
     <main>
@@ -254,7 +237,9 @@
                 Deaths, recovered
               </h2> -->
               <h2 class="subtitle deaths-recovered__title">Global Recovered</h2>
-              <span class="title cases global-recovered__number">1 262 372</span>
+              <span class="title cases global-recovered__number"
+                >1 262 372</span
+              >
               <ul class="list">
                 <!-- <li class="list__link">
                   <span class="cases cases_death">123</span>
