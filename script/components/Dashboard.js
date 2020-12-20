@@ -91,6 +91,7 @@ export default class Dashboard {
       x.itemContainer.addEventListener('gridItemClick', (event) => {
         this.menu.region = event.detail.country;
         this.menu.isCountry = true;
+        this.menu.setCountryIndication(this.menu.region);
         this.menu.applyButton.dispatchEvent(new Event('mousedown'));
       });
     });
