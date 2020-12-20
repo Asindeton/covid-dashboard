@@ -59,7 +59,11 @@ export default class Menu {
     this.countryList.querySelectorAll('.country').forEach((el) => {
       if (el.innerText === countryName) {
         el.closest('.mode-changer__button').classList.add('mode-changer__button_active');
-      } else el.closest('.mode-changer__button').classList.remove('mode-changer__button_active');
+        this.isCountry = true;
+        this.countryList.classList.remove('hide');
+      } else {
+        el.closest('.mode-changer__button').classList.remove('mode-changer__button_active');
+      }
     });
   }
 
