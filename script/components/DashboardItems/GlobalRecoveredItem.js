@@ -34,7 +34,8 @@ export default class GlobalRecoveredItem extends DashboardItem {
       return 0;
     });
     for (let i = 0; i < this.data.Countries.length; i += 1) {
-      if (getNumber(this.data.Countries[i]) > 0) {
+      if (getNumber(this.data.Countries[i]) > 0
+      && (!this.state.region || this.data.Countries[i].Country === this.state.region)) {
         this.itemContainer.append((new GridItem('cases cases_recovered', numberFormatter(getNumber(this.data.Countries[i]), this.state.population),
           this.data.Countries[i].Country)).gridItem);
       }

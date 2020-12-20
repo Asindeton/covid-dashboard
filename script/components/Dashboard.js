@@ -51,6 +51,7 @@ export default class Dashboard {
         this.data, this.globalRecovered),
     ];
     this.dashboardItems.forEach((x) => x.updateItemInfo());
+    this.handleGridItemClick();
   }
 
   handleSearch() {
@@ -70,7 +71,7 @@ export default class Dashboard {
   }
 
   handleState() {
-    this.menu.applyButton.addEventListener('mousedown', async () => {
+    this.menu.applyButton.addEventListener('mousedown', () => {
       const state = this.getStateFromMenu();
       console.log(state);
       this.menu.menuEl.classList.remove('menu_active');
@@ -82,5 +83,15 @@ export default class Dashboard {
 
   getStateFromMenu() {
     return this.menu.getState();
+  }
+
+  handleGridItemClick() {
+    this.dashboardItems.forEach((x) => {
+      x.itemContainer.addEventListener('gridItemClick', (event) => {
+        this.menu.region = event.detail.country;
+        this.menu.isCountry = true;
+        this.menu.applyButton.dispatchEvent(new Event('mousedown'));
+      });
+    });
   }
 }
