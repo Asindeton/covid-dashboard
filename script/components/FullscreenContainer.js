@@ -12,7 +12,7 @@ export default class FullscreenContainer {
     });
   }
 
-  update(targetContainer) {
+  update(targetContainer = this.element.targetElement) {
     this.targetElement = targetContainer;
     this.remove();
     this.insertedElement = this.targetElement.cloneNode(true);
