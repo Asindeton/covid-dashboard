@@ -4,7 +4,8 @@ import numberFormatter from '../../utils/formatter';
 export default class GlobalCasesItem extends DashboardItem {
   updateItemInfo(data, state) {
     super.updateItemInfo(data, state);
-    this.itemContainer.innerHTML = numberFormatter(this.data.Global.TotalConfirmed,
+    const getNumber = (x) => (this.state.time === 'lastDay' ? x.NewConfirmed : x.TotalConfirmed);
+    this.itemContainer.innerHTML = numberFormatter(getNumber(this.data.Global),
       this.state.population);
   }
 }
