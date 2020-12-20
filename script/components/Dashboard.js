@@ -75,6 +75,7 @@ export default class Dashboard {
       console.log(state);
       this.menu.menuEl.classList.remove('menu_active');
       this.dashboardItems.forEach((x) => x.updateItemInfo(null, state));
+      this.fullscreenContainer.update();
       this.state = state;
     });
   }
