@@ -1,6 +1,6 @@
 import DashboardItem from './DashboardItem';
+import GridItem from '../GridItems/GridItem';
 import numberFormatter from '../../utils/formatter';
-import createHtmlElement from '../../utils/create';
 
 export default class GlobalRecoveredItem extends DashboardItem {
   constructor(itemContainerSelector, fullScreenSelector, state, data, globalRecoveredSelector) {
@@ -12,8 +12,9 @@ export default class GlobalRecoveredItem extends DashboardItem {
     super.updateItemInfo(data, state);
     this.globalRecoveredCountElement.innerHTML = numberFormatter(this.data.Global.TotalDeaths);
     this.itemContainer.innerHTML = '';
+    const getNumber = (x) => (this.state.time === 'lastDay' ? x.NewRecovered : x.TotalRecovered);
     this.data.Countries.sort((a, b) => {
-      if (b.TotalRecovered === a.TotalRecovered) {
+      if (getNumber(b) === getNumber(a)) {
         if (a.Country > b.Country) {
           return 1;
         }
@@ -23,21 +24,18 @@ export default class GlobalRecoveredItem extends DashboardItem {
         return 0;
       }
 
-      if (b.TotalRecovered > a.TotalRecovered) {
+      if (getNumber(b) > getNumber(a)) {
         return 1;
       }
-      if (b.TotalRecovered < a.TotalRecovered) {
+      if (getNumber(b) < getNumber(a)) {
         return -1;
       }
       return 0;
     });
     for (let i = 0; i < this.data.Countries.length; i += 1) {
-      if (this.data.Countries[i].TotalRecovered > 0) {
-        this.itemContainer.append(createHtmlElement('li', 'list__link',
-          [
-            createHtmlElement('span', 'cases cases_recovered', numberFormatter(this.data.Countries[i].TotalRecovered), null),
-            createHtmlElement('span', '', this.data.Countries[i].Country, null),
-          ], null));
+      if (getNumber(this.data.Countries[i]) > 0) {
+        this.itemContainer.append((new GridItem('cases cases_recovered', numberFormatter(getNumber(this.data.Countries[i]), this.state.population),
+          this.data.Countries[i].Country)).gridItem);
       }
     }
   }
