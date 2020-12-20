@@ -13,6 +13,7 @@ export default class Menu {
     this.globalModeButton = document.querySelector('.mode__global');
     this.countryModeButton = document.querySelector('.mode__country');
     this.regionEl = null;
+    this.region = null;
     this.isCountry = false;
     this.fillCountries();
     this.addEventHandlers();
@@ -46,13 +47,14 @@ export default class Menu {
         this.regionEl.classList.remove('mode-changer__button_active');
         regionEl.classList.add('mode-changer__button_active');
         this.regionEl = regionEl;
+        this.region = this.regionEl.value;
       }
     });
   }
 
   getState() {
     const formData = parseFormData(new FormData(this.formEl));
-    formData.region = this.isCountry ? this.regionEl.value : '';
+    formData.region = this.isCountry ? this.region : '';
     return formData;
   }
 

@@ -57,12 +57,14 @@ export default class Dashboard {
     this.searchElement.results.addEventListener('mousedown', (e) => {
       const eventContainer = e.target.closest('.search__link');
       if (eventContainer) {
-        this.state.region = eventContainer.querySelector('.search__country').innerText;
+        this.menu.region = eventContainer.querySelector('.search__country').innerText;
+        this.menu.isCountry = true;
         this.searchElement.clearResults();
         this.searchElement.clearInput();
         this.searchElement.keyboard.properties.value = '';
         this.searchElement.keyboard.properties.secondValue = '';
         this.searchElement.keyboard.close();
+        this.menu.applyButton.dispatchEvent(new Event('mousedown'));
       }
     }, true);
   }
@@ -70,6 +72,7 @@ export default class Dashboard {
   handleState() {
     this.menu.applyButton.addEventListener('mousedown', async () => {
       const state = this.getStateFromMenu();
+      console.log(state);
       this.menu.menuEl.classList.remove('menu_active');
       this.dashboardItems.forEach((x) => x.updateItemInfo(null, state));
       this.state = state;
