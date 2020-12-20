@@ -12,6 +12,8 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="shortcut icon" href="assets/favicon.ico" />
   </head>
   <body>
@@ -170,13 +172,14 @@
           </div>
           <button class="fullscreen__toggle hide"></button>
         </div>
-        <div class="container map">
-          <div class="inside-wrapper"></div>
-          <button class="fullscreen__toggle hide"></button>
+        <div class="container map full-height">
+          <div class="inside-wrapper full-height" id="map"></div>
+          <div class='map-overlay' id='legend'></div>
+          <button class="fullscreen__toggle"></button>
         </div>
         <div class="detailed-stat">
           <div class="container global-deaths">
-            <div class="inside-wrapper">
+            <div class="inside-wrapper ">
               <h2 class="subtitle global-deaths__title">Global Deaths</h2>
               <span class="title cases global-deaths__number">1 262 372</span>
               <ul class="list">
@@ -317,10 +320,11 @@
           </div>
         </div>
         <div class="container graph">
+          <canvas id="myChart"></canvas>
           <button class="fullscreen__toggle hide"></button>
         </div>
       </div>
-      <div class="fullscreen container hide">
+      <div class="fullscreen container hide" id="fullscreen">
         <button class="fas fa-times button__close"></button>
       </div>
     </main>
