@@ -671,3 +671,81 @@ main {
 .hide {
   display: none;
 }
+.full-height {
+  height: 100%;
+}
+
+$blue-grey-900: grey;
+$blue-grey-100: grey;
+$red-800: rgb(230, 70, 81);
+
+.icon-marker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 0.8em;
+  background-color: $red-800;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(black, 0.9);
+  cursor: pointer;
+}
+
+.icon-marker-tooltip {
+  width: 100%;
+  font-size: 1.4em;
+  border-radius: 0.4em;
+  margin-bottom: 1em;
+  box-shadow: 0 3px 5px rgba(black, 0.9);
+
+  h2 {
+    font-size: 1.5em;
+    line-height: 1.2;
+    margin-bottom: 0.1em;
+    margin-top: 0;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    margin: 0.1em 0;
+    font-weight: normal;
+    color: $blue-grey-100;
+  }
+
+  ul,
+  p {
+    font-weight: normal;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.6em 0 0;
+  }
+}
+
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 3px;
+}
+#legend {
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  height: 75px;
+  margin-bottom: 40px;
+  width: 130px;
+}
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}

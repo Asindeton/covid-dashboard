@@ -7,6 +7,8 @@ import GlobalCasesItem from './DashboardItems/GlobalCasesItem';
 import CasesByRegionItem from './DashboardItems/CasesByRegionItem';
 import GlobalDeathsItem from './DashboardItems/GlobalDeathsItem';
 import GlobalRecoveredItem from './DashboardItems/GlobalRecoveredItem';
+import GlobalMapItem from './DashboardItems/GlobalMapItem';
+import GlobalChartItem from './DashboardItems/GlobalChartItem';
 
 export default class Dashboard {
   constructor() {
@@ -49,6 +51,10 @@ export default class Dashboard {
         this.data, this.globalDeaths),
       new GlobalRecoveredItem(this.globalRecoveredContainer, this.fullscreenContainer, this.state,
         this.data, this.globalRecovered),
+      new GlobalMapItem(this.mapContainer, this.fullscreenContainer, this.state,
+        this.data),
+      new GlobalChartItem(this.chartContainer, this.fullscreenContainer, this.state,
+        this.data),
     ];
     this.dashboardItems.forEach((x) => x.updateItemInfo());
   }

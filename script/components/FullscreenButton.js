@@ -10,6 +10,7 @@ export default class FullscreenButton {
   addMouseListeners() {
     this.targetContainer.addEventListener('mouseenter', () => {
       this.fullscreenButton.classList.remove('hide');
+      this.targetElement = '';
     });
     this.targetContainer.addEventListener('mouseleave', () => {
       this.fullscreenButton.classList.add('hide');
