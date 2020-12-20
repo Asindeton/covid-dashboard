@@ -9,6 +9,7 @@ export default class FullscreenContainer {
   addEventsHandlers() {
     this.closeButton.addEventListener('click', () => {
       this.element.classList.add('hide');
+      this.targetElement = '';
     });
   }
 
