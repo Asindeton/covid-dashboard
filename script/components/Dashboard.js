@@ -60,6 +60,7 @@ export default class Dashboard {
       if (eventContainer) {
         this.menu.region = eventContainer.querySelector('.search__country').innerText;
         this.menu.isCountry = true;
+        this.menu.setCountryIndication(this.menu.region);
         this.searchElement.clearResults();
         this.searchElement.clearInput();
         this.searchElement.keyboard.properties.value = '';

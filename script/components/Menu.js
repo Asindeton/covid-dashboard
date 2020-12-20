@@ -52,6 +52,16 @@ export default class Menu {
     });
   }
 
+  setCountryIndication(countryName) {
+    this.globalModeButton.classList.remove('mode-changer__button_active');
+    this.countryModeButton.classList.add('mode-changer__button_active');
+    this.countryList.querySelectorAll('.country').forEach((el) => {
+      if (el.innerText === countryName) {
+        el.closest('.mode-changer__button').classList.add('mode-changer__button_active');
+      } else el.closest('.mode-changer__button').classList.remove('mode-changer__button_active');
+    });
+  }
+
   getState() {
     const formData = parseFormData(new FormData(this.formEl));
     formData.region = this.isCountry ? this.region : '';
