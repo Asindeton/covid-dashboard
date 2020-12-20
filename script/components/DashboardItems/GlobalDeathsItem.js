@@ -10,9 +10,10 @@ export default class GlobalDeathsItem extends DashboardItem {
 
   updateItemInfo(data, state) {
     super.updateItemInfo(data, state);
-    this.globalDeathsCountElement.innerHTML = numberFormatter(this.data.Global.TotalDeaths);
-    this.itemContainer.innerHTML = '';
     const getNumber = (x) => (this.state.time === 'lastDay' ? x.NewDeaths : x.TotalDeaths);
+    this.globalDeathsCountElement.innerHTML = numberFormatter(getNumber(this.data.Global),
+      this.state.population);
+    this.itemContainer.innerHTML = '';
     this.data.Countries.sort((a, b) => {
       if (getNumber(b) === getNumber(a)) {
         if (a.Country > b.Country) {
