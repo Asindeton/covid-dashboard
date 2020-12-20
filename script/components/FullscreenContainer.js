@@ -12,13 +12,15 @@ export default class FullscreenContainer {
     });
   }
 
-  update(targetContainer = this.element.targetElement) {
+  update(targetContainer = this.targetElement) {
     this.targetElement = targetContainer;
     this.remove();
-    this.insertedElement = this.targetElement.cloneNode(true);
-    this.insertedElement.querySelector('.fullscreen__toggle').remove();
-    this.element.classList.remove('hide');
-    this.element.insertBefore(this.insertedElement, this.element.firstChild);
+    if (this.targetElement) {
+      this.insertedElement = this.targetElement.cloneNode(true);
+      this.insertedElement.querySelector('.fullscreen__toggle').remove();
+      this.element.classList.remove('hide');
+      this.element.insertBefore(this.insertedElement, this.element.firstChild);
+    }
   }
 
   remove() {
