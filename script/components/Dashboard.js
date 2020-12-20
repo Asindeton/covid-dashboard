@@ -68,9 +68,11 @@ export default class Dashboard {
   }
 
   handleState() {
-    this.menu.applyButton.addEventListener('mousedown', () => {
-      this.getStateFromMenu();
+    this.menu.applyButton.addEventListener('mousedown', async () => {
+      const state = this.getStateFromMenu();
       this.menu.menuEl.classList.remove('menu_active');
+      this.dashboardItems.forEach((x) => x.updateItemInfo(null, state));
+      this.state = state;
     });
   }
 
