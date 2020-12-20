@@ -19,4 +19,8 @@ export default class DashboardItem {
   updateFullScreenBehavior() {
 
   }
+
+  getItemContainer() {
+    return this.itemContainer;
+  }
 }
