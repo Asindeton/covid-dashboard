@@ -66,8 +66,11 @@ export default class Dashboard {
       new GlobalChartItem(this.chartContainer, this.fullscreenContainer, this.state,
         this.data),
     ];
+    this.handleList(this.globalDeathsContainer);
+    this.handleList(this.globalRecoveredContainer);
+    this.handleList(this.casesByRegionContainer);
     this.dashboardItems.forEach((x) => x.updateItemInfo());
-    this.handleGridItemClick();
+    // this.handleGridItemClick();
   }
 
   handleSearch() {
@@ -102,14 +105,23 @@ export default class Dashboard {
     return this.menu.getState();
   }
 
-  handleGridItemClick() {
-    this.dashboardItems.forEach((x) => {
-      x.itemContainer.addEventListener('gridItemClick', (event) => {
-        this.menu.region = event.detail.country;
-        this.menu.isCountry = true;
-        this.menu.setCountryIndication(this.menu.region);
-        this.menu.applyButton.dispatchEvent(new Event('mousedown'));
-      });
+  handleList(htmlElement) {
+    htmlElement.addEventListener('click', (e) => {
+      const listLink = e.target.closest('.list__link');
+      this.menu.region = listLink.lastChild.innerText;
+      this.menu.isCountry = true;
+      this.menu.setCountryIndication(this.menu.region);
+      this.menu.applyButton.dispatchEvent(new Event('mousedown'));
     });
   }
+  // handleGridItemClick() {
+  //   this.dashboardItems.forEach((x) => {
+  //     x.itemContainer.addEventListener('Click', (event) => {
+  //       this.menu.region = event.detail.country;
+  //       this.menu.isCountry = true;
+  //       this.menu.setCountryIndication(this.menu.region);
+  //       this.menu.applyButton.dispatchEvent(new Event('mousedown'));
+  //     });
+  //   });
+  // }
 }
