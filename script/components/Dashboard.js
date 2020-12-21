@@ -12,6 +12,14 @@ import GlobalChartItem from './DashboardItems/GlobalChartItem';
 
 export default class Dashboard {
   constructor() {
+    this.globalCases = document.querySelector('.global-cases__number');
+    this.casesByRegionContainer = document.querySelector('.cases-by .list');
+    this.mapContainer = document.querySelector('.map');
+    this.chartContainer = document.querySelector('.graph');
+    this.globalDeaths = document.querySelector('.global-deaths__number');
+    this.globalDeathsContainer = document.querySelector('.global-deaths .list');
+    this.globalRecovered = document.querySelector('.global-recovered__number');
+    this.globalRecoveredContainer = document.querySelector('.deaths-recovered .list');
     this.searchElement = new SearchElement();
     this.menu = new Menu();
     this.state = this.getStateFromMenu();
@@ -24,23 +32,7 @@ export default class Dashboard {
     });
   }
 
-  generateDashboard() {
-    this.globalCases = document.querySelector('.global-cases__number');
-    this.casesByRegionContainer = document.querySelector('.cases-by .list');
-    this.mapContainer = document.querySelector('.map');
-    this.chartContainer = document.querySelector('.graph');
-    this.globalDeaths = document.querySelector('.global-deaths__number');
-    this.globalDeathsContainer = document.querySelector('.global-deaths .list');
-    this.globalRecovered = document.querySelector('.global-recovered__number');
-    this.globalRecoveredContainer = document.querySelector('.deaths-recovered .list');
-  }
-
-  addEventsHandlers() {
-    this.handleSearch();
-    this.handleState();
-  }
-
-  async updateDashboard() {
+  async generateDashboard() {
     const dataService = new DataService('https://corona.lmao.ninja/v2/countries');
     this.data = await dataService.getData();
     this.data.Global = {};
@@ -52,6 +44,7 @@ export default class Dashboard {
       this.data.Global.todayRecovered = (this.data.Global.todayRecovered || 0)
       + (x.todayRecovered || 0);
       this.data.Global.recovered = (this.data.Global.recovered || 0) + (x.recovered || 0);
+      this.data.Global.population = (this.data.Global.population || 0) + (x.population || 0);
     });
     this.dashboardItems = [
       new GlobalCasesItem(this.globalCases, this.fullscreenContainer, this.state, this.data),
@@ -70,7 +63,12 @@ export default class Dashboard {
     this.handleList(this.globalRecoveredContainer);
     this.handleList(this.casesByRegionContainer);
     this.dashboardItems.forEach((x) => x.updateItemInfo());
-    // this.handleGridItemClick();
+    this.handleGridItemClick();
+  }
+
+  addEventsHandlers() {
+    this.handleSearch();
+    this.handleState();
   }
 
   handleSearch() {
@@ -114,14 +112,15 @@ export default class Dashboard {
       this.menu.applyButton.dispatchEvent(new Event('mousedown'));
     });
   }
-  // handleGridItemClick() {
-  //   this.dashboardItems.forEach((x) => {
-  //     x.itemContainer.addEventListener('Click', (event) => {
-  //       this.menu.region = event.detail.country;
-  //       this.menu.isCountry = true;
-  //       this.menu.setCountryIndication(this.menu.region);
-  //       this.menu.applyButton.dispatchEvent(new Event('mousedown'));
-  //     });
-  //   });
-  // }
+
+  handleGridItemClick() {
+    this.dashboardItems.forEach((x) => {
+      x.itemContainer.addEventListener('gridItemClick', (event) => {
+        this.menu.region = event.detail.country;
+        this.menu.isCountry = true;
+        this.menu.setCountryIndication(this.menu.region);
+        this.menu.applyButton.dispatchEvent(new Event('mousedown'));
+      });
+    });
+  }
 }
