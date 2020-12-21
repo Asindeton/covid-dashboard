@@ -1,25 +1,27 @@
 export default class FullscreenButton {
-  constructor(targetContainer, fullscreenObject) {
-    this.targetContainer = targetContainer;
+  constructor(targetObject, fullscreenObject, handler) {
+    this.handler = handler;
+    this.targetObject = targetObject;
     this.fullscreenObject = fullscreenObject;
-    this.fullscreenButton = this.targetContainer.querySelector('.fullscreen__toggle');
+    this.fullscreenButton = this.targetObject.getItemContainer().querySelector('.fullscreen__toggle');
     this.addMouseListeners();
     this.addButtonActivity();
   }
 
   addMouseListeners() {
-    this.targetContainer.addEventListener('mouseenter', () => {
+    this.targetObject.getItemContainer().addEventListener('mouseenter', () => {
       this.fullscreenButton.classList.remove('hide');
       this.targetElement = '';
     });
-    this.targetContainer.addEventListener('mouseleave', () => {
+    this.targetObject.getItemContainer().addEventListener('mouseleave', () => {
       this.fullscreenButton.classList.add('hide');
     });
   }
 
   addButtonActivity() {
     this.fullscreenButton.addEventListener('click', () => {
-      this.fullscreenObject.update(this.targetContainer);
+      this.fullscreenObject.update(this.targetObject.getItemContainer(),
+        this.targetObject.clickHandler);
     });
   }
 }

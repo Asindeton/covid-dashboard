@@ -1,8 +1,9 @@
 export default class FullscreenContainer {
-  constructor() {
+  constructor(menu) {
     this.element = document.querySelector('.fullscreen');
     this.closeButton = this.element.querySelector('.button__close');
     this.targetElement = null;
+    this.menu = menu;
     this.addEventsHandlers();
   }
 
@@ -13,13 +14,15 @@ export default class FullscreenContainer {
     });
   }
 
-  update(targetContainer = this.targetElement) {
+  update(targetContainer = this.targetElement, clickHandler = this.clickHandler) {
     this.targetElement = targetContainer;
+    this.clickHandler = clickHandler;
     this.remove();
     if (this.targetElement) {
       this.insertedElement = this.targetElement.cloneNode(true);
       this.insertedElement.querySelector('.fullscreen__toggle').remove();
       this.element.classList.remove('hide');
+      this.clickHandler(this.insertedElement);
       this.element.insertBefore(this.insertedElement, this.element.firstChild);
     }
   }
