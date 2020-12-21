@@ -23,7 +23,6 @@ export default class Dashboard {
     this.searchElement = new SearchElement();
     this.menu = new Menu();
     this.state = this.getStateFromMenu();
-    this.generateDashboard();
     this.addEventsHandlers();
   }
 
@@ -56,9 +55,7 @@ export default class Dashboard {
         this.data, this.handleList()),
     ];
     this.fullscreenContainer = new FullscreenContainer(this.menu);
-    this.dashboardItems.forEach((el) => {
-      const fullscreenButton = new FullscreenButton(el, this.fullscreenContainer);
-    });
+    this.dashboardItems.forEach((el) => new FullscreenButton(el, this.fullscreenContainer));
     this.dashboardItems.forEach((x) => x.updateItemInfo());
     this.handleGridItemClick();
   }
