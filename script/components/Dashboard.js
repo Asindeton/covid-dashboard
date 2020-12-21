@@ -41,8 +41,18 @@ export default class Dashboard {
   }
 
   async updateDashboard() {
-    const dataService = new DataService('https://api.covid19api.com/summary');
+    const dataService = new DataService('https://corona.lmao.ninja/v2/countries');
     this.data = await dataService.getData();
+    this.data.Global = {};
+    this.data.forEach((x) => {
+      this.data.Global.todayCases = (this.data.Global.todayCases || 0) + (x.todayCases || 0);
+      this.data.Global.cases = (this.data.Global.cases || 0) + (x.cases || 0);
+      this.data.Global.todayDeaths = (this.data.Global.todayDeaths || 0) + (x.todayDeaths || 0);
+      this.data.Global.deaths = (this.data.Global.deaths || 0) + (x.deaths || 0);
+      this.data.Global.todayRecovered = (this.data.Global.todayRecovered || 0)
+      + (x.todayRecovered || 0);
+      this.data.Global.recovered = (this.data.Global.recovered || 0) + (x.recovered || 0);
+    });
     this.dashboardItems = [
       new GlobalCasesItem(this.globalCases, this.fullscreenContainer, this.state, this.data),
       new CasesByRegionItem(this.casesByRegionContainer, this.fullscreenContainer, this.state,
