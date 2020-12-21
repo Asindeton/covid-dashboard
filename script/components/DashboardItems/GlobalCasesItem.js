@@ -6,6 +6,6 @@ export default class GlobalCasesItem extends DashboardItem {
     super.updateItemInfo(data, state);
     const getNumber = (x) => (this.state.time === 'lastDay' ? x.todayCases : x.cases);
     this.itemContainer.innerHTML = numberFormatter(getNumber(this.data.Global),
-      this.state.population);
+      this.state.population, this.data.Global.population);
   }
 }
