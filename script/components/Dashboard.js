@@ -52,7 +52,7 @@ export default class Dashboard {
       new GlobalMapItem(this.mapContainer, this.fullscreenContainer, this.state,
         this.data, this.handleList()),
       new GlobalChartItem(this.chartContainer, this.fullscreenContainer, this.state,
-        this.data, this.handleList()),
+        this.data, null),
     ];
     this.fullscreenContainer = new FullscreenContainer(this.menu);
     this.dashboardItems.forEach((el) => new FullscreenButton(el, this.fullscreenContainer));
@@ -85,7 +85,6 @@ export default class Dashboard {
   handleState() {
     this.menu.applyButton.addEventListener('mousedown', () => {
       const state = this.getStateFromMenu();
-      console.log(state);
       this.menu.menuEl.classList.remove('menu_active');
       this.dashboardItems.forEach((x) => x.updateItemInfo(null, state));
       this.fullscreenContainer.update();

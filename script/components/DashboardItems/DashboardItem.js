@@ -1,17 +1,14 @@
 export default class DashboardItem {
-  constructor(itemContainerSelector, fullScreenSelector, state, data, clickHandler, htmlContainer) {
+  constructor(itemContainerSelector, fullScreenSelector, state, data, clickHandler) {
     this.itemContainer = itemContainerSelector;
     this.htmlContainer = this.itemContainer.closest('.container');
-    console.log(this.htmlContainer);
     this.fullScreen = fullScreenSelector;
     this.state = state;
     this.data = data;
+    this.clickHandler = clickHandler;
     if (clickHandler) {
-      this.clickHandler = clickHandler;
-      console.log(this.clickHandler);
       this.clickHandler(itemContainerSelector);
     }
-    this.updateFullScreenBehavior();
   }
 
   updateItemInfo(data, state) {
@@ -21,9 +18,6 @@ export default class DashboardItem {
     if (state) {
       this.state = state;
     }
-  }
-
-  updateFullScreenBehavior() {
   }
 
   getItemContainer() {
