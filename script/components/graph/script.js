@@ -11,7 +11,7 @@ async function getGraphData(country) {
     console.log(commits);
     drawGraph(commits.cases ? commits.cases : commits.timeline.deaths, commits.country || 'All World');
   } else {
-    alert(`Ошибка в функции getGraphData.The number of requests is limited. Please try again later. Error: ${response.status}`);
+    alert(`Sorry, there is no data for this country. Error: ${response.status}`);
   }
 }
 
