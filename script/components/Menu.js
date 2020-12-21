@@ -52,7 +52,7 @@ export default class Menu {
     });
   }
 
-  setCountryIndication(countryName) {
+  setCountryIndication(countryName = this.region) {
     this.globalModeButton.classList.remove('mode-changer__button_active');
     this.countryModeButton.classList.add('mode-changer__button_active');
     this.countryList.classList.remove('hide');
@@ -71,6 +71,12 @@ export default class Menu {
     const formData = parseFormData(new FormData(this.formEl));
     formData.region = this.isCountry ? this.region : '';
     return formData;
+  }
+
+  setCountry(countryName) {
+    this.region = countryName;
+    this.isCountry = true;
+    this.setCountryIndication();
   }
 
   fillCountries() {

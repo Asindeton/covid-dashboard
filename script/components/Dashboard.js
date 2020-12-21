@@ -23,13 +23,7 @@ export default class Dashboard {
     this.searchElement = new SearchElement();
     this.menu = new Menu();
     this.state = this.getStateFromMenu();
-    this.generateDashboard();
     this.addEventsHandlers();
-
-    this.fullscreenContainer = new FullscreenContainer();
-    document.querySelector('.main').querySelectorAll('.container').forEach((el) => {
-      const fullscreenButton = new FullscreenButton(el, this.fullscreenContainer);
-    });
   }
 
   async generateDashboard() {
@@ -47,21 +41,21 @@ export default class Dashboard {
       this.data.Global.population = (this.data.Global.population || 0) + (x.population || 0);
     });
     this.dashboardItems = [
-      new GlobalCasesItem(this.globalCases, this.fullscreenContainer, this.state, this.data),
+      new GlobalCasesItem(this.globalCases, this.fullscreenContainer, this.state, this.data,
+        this.handleList()),
       new CasesByRegionItem(this.casesByRegionContainer, this.fullscreenContainer, this.state,
-        this.data),
+        this.data, this.handleList()),
       new GlobalDeathsItem(this.globalDeathsContainer, this.fullscreenContainer, this.state,
-        this.data, this.globalDeaths),
+        this.data, this.globalDeaths, this.handleList()),
       new GlobalRecoveredItem(this.globalRecoveredContainer, this.fullscreenContainer, this.state,
-        this.data, this.globalRecovered),
+        this.data, this.globalRecovered, this.handleList()),
       new GlobalMapItem(this.mapContainer, this.fullscreenContainer, this.state,
-        this.data),
+        this.data, this.handleList()),
       new GlobalChartItem(this.chartContainer, this.fullscreenContainer, this.state,
-        this.data),
+        this.data, this.handleList()),
     ];
-    this.handleList(this.globalDeathsContainer);
-    this.handleList(this.globalRecoveredContainer);
-    this.handleList(this.casesByRegionContainer);
+    this.fullscreenContainer = new FullscreenContainer(this.menu);
+    this.dashboardItems.forEach((el) => new FullscreenButton(el, this.fullscreenContainer));
     this.dashboardItems.forEach((x) => x.updateItemInfo());
     this.handleGridItemClick();
   }
@@ -103,14 +97,15 @@ export default class Dashboard {
     return this.menu.getState();
   }
 
-  handleList(htmlElement) {
-    htmlElement.addEventListener('click', (e) => {
-      const listLink = e.target.closest('.list__link');
-      this.menu.region = listLink.lastChild.innerText;
-      this.menu.isCountry = true;
-      this.menu.setCountryIndication(this.menu.region);
-      this.menu.applyButton.dispatchEvent(new Event('mousedown'));
-    });
+  handleList() {
+    const { menu } = this;
+    return (htmlElement) => {
+      htmlElement.addEventListener('click', (e) => {
+        const listLink = e.target.closest('.list__link');
+        menu.setCountry(listLink.lastChild.innerText);
+        menu.applyButton.dispatchEvent(new Event('mousedown'));
+      });
+    };
   }
 
   handleGridItemClick() {
