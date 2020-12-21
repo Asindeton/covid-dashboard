@@ -19,7 +19,7 @@ export default class DrawMap {
 
     this.mapCenter = getMapCenter(this.geoJSON, this.region);
     this.drawMap(this.mapCenter, this.DOMElement);
-    this.drawMarker(this.geoJSON, this.cases, this.population, this.time);
+    this.drawMarker(this.geoJSON, this.cases, this.population, this.time, this.region);
   }
 
   drawMap(center, DOMElement) {
@@ -46,7 +46,7 @@ export default class DrawMap {
     }
   }
 
-  drawMarker(date, val, population, time) {
+  drawMarker(date, val, population, time, region) {
     date.features.forEach((marker) => {
       let updatedFormatted;
       let casesString;
@@ -55,7 +55,6 @@ export default class DrawMap {
       } = marker.properties;
       let markerContent;
       let markerColor;
-
 
       if (val === 'confirmed') {
         if (time === 'allTime') {
@@ -81,6 +80,7 @@ export default class DrawMap {
       }
 
       const countryShortCode = marker.properties.countryInfo.iso3;
+      country === region ? getGraphData(countryShortCode) : false;
       const popup = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: false,
