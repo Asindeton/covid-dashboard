@@ -1,5 +1,6 @@
 import parseFormData from '../utils/parseFormData';
 import createHtmlElement from '../utils/create';
+import getCountryCode from '../utils/getCountryCode';
 import countries from './Countries';
 
 export default class Menu {
@@ -47,7 +48,7 @@ export default class Menu {
         this.regionEl.classList.remove('mode-changer__button_active');
         regionEl.classList.add('mode-changer__button_active');
         this.regionEl = regionEl;
-        this.region = this.regionEl.value;
+        this.setCountry(this.regionEl.value);
       }
     });
   }
@@ -65,6 +66,7 @@ export default class Menu {
         el.closest('.mode-changer__button').classList.remove('mode-changer__button_active');
       }
     });
+    this.countryModeButton.querySelector('.flag').src = `https://www.countryflags.io/${getCountryCode(countryName, countries)}/flat/32.png`;
   }
 
   getState() {

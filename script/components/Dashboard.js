@@ -69,9 +69,7 @@ export default class Dashboard {
     this.searchElement.results.addEventListener('mousedown', (e) => {
       const eventContainer = e.target.closest('.search__link');
       if (eventContainer) {
-        this.menu.region = eventContainer.querySelector('.search__country').innerText;
-        this.menu.isCountry = true;
-        this.menu.setCountryIndication(this.menu.region);
+        this.menu.setCountry(eventContainer.querySelector('.search__country').innerText);
         this.searchElement.clearResults();
         this.searchElement.clearInput();
         this.searchElement.keyboard.properties.value = '';
@@ -107,14 +105,14 @@ export default class Dashboard {
     };
   }
 
-  handleGridItemClick() {
-    this.dashboardItems.forEach((x) => {
-      x.itemContainer.addEventListener('gridItemClick', (event) => {
-        this.menu.region = event.detail.country;
-        this.menu.isCountry = true;
-        this.menu.setCountryIndication(this.menu.region);
-        this.menu.applyButton.dispatchEvent(new Event('mousedown'));
-      });
-    });
-  }
+  // handleGridItemClick() {
+  //   this.dashboardItems.forEach((x) => {
+  //     x.itemContainer.addEventListener('gridItemClick', (event) => {
+  //       this.menu.region = event.detail.country;
+  //       this.menu.isCountry = true;
+  //       this.menu.setCountryIndication(this.menu.region);
+  //       this.menu.applyButton.dispatchEvent(new Event('mousedown'));
+  //     });
+  //   });
+  // }
 }
