@@ -20,6 +20,7 @@
     <link rel="shortcut icon" href="assets/favicon.ico" />
   </head>
   <body>
+    <div class="overlay hide"></div>
     <header class="header container">
       <div class="upper-controls">
         <a href="#top" class="main-title">
@@ -38,6 +39,22 @@
         <button class="menu__button-show fas fa-bars"></button>
       </div>
     </header>
+    <div class="state container">
+      <ul class="state__list">
+        <li class="state__link">
+          Map & chart cases<br /><span class="state__text state__cases"></span>
+        </li>
+        <li class="state__link">
+          Population<br /><span class="state__text state__population"></span>
+        </li>
+        <li class="state__link">
+          Time<br /><span class="state__text state__time"></span>
+        </li>
+        <li class="state__link">
+          Region<br /><span class="state__text state__region"></span>
+        </li>
+      </ul>
+    </div>
     <div class="menu-wrapper">
       <nav class="menu menu_out-of-screen container">
         <!--menu_active-->
@@ -176,8 +193,11 @@
           <button class="fullscreen__toggle hide"></button>
         </div>
         <div class="container map">
+          <div id="mapWrapper" class="full-height">
           <div class="inside-wrapper full-height" id="map"></div>
-          <div class="map-overlay" id="legend"></div>
+          <div class="map-overlay" id="legend">
+          </div>
+        </div>
           <button class="fullscreen__toggle"></button>
         </div>
         <div class="detailed-stat">

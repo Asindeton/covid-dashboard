@@ -4,8 +4,9 @@ import numberFormatter from '../../utils/formatter';
 import sorter from '../../utils/sorter';
 
 export default class GlobalDeathsItem extends DashboardItem {
-  constructor(itemContainerSelector, fullScreenSelector, state, data, globalDeathsSelector) {
-    super(itemContainerSelector, fullScreenSelector, state, data);
+  constructor(itemContainerSelector, fullScreenSelector, state,
+    data, globalDeathsSelector, clickHandler) {
+    super(itemContainerSelector, fullScreenSelector, state, data, clickHandler);
     this.globalDeathsCountElement = globalDeathsSelector;
   }
 

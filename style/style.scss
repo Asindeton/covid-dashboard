@@ -37,6 +37,7 @@ body {
 }
 
 main {
+  margin-bottom: auto;
   display: flex;
   justify-content: center;
   position: relative;
@@ -120,7 +121,7 @@ main {
   margin: 0 auto;
   padding: 10px;
   grid-template-columns: repeat(11, minmax(90px, 150px));
-  grid-template-rows: repeat(6, minmax(75px, 100px));
+  grid-template-rows: repeat(6, minmax(75px, 90px));
   grid-template-areas:
     "gc gc map map map map map map ds ds ds"
     "gc gc map map map map map map ds ds ds"
@@ -527,7 +528,7 @@ main {
   }
 
   &_active {
-    z-index: 3;
+    z-index: 7;
     right: 0px;
   }
 
@@ -742,10 +743,59 @@ $red-800: rgb(230, 70, 81);
   margin-bottom: 40px;
   width: 130px;
 }
+
 .legend-key {
   display: inline-block;
   border-radius: 20%;
   width: 10px;
   height: 10px;
   margin-right: 5px;
+}
+
+.overlay {
+  background: black;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 6;
+  opacity: 0.12;
+}
+
+.state {
+  position: sticky;
+  margin-bottom: auto;
+  align-self: flex-start;
+  width: 100vw;
+  top: 59px;
+  z-index: 5;
+  height: 44px;
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+  }
+
+  &__link {
+    text-align: center;
+    font-weight: 900;
+  }
+
+  &__text {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  &__cases {
+  }
+
+  &__population {
+  }
+
+  &__time {
+  }
+
+  &__region {
+  }
 }

@@ -4,8 +4,9 @@ import numberFormatter from '../../utils/formatter';
 import sorter from '../../utils/sorter';
 
 export default class GlobalRecoveredItem extends DashboardItem {
-  constructor(itemContainerSelector, fullScreenSelector, state, data, globalRecoveredSelector) {
-    super(itemContainerSelector, fullScreenSelector, state, data);
+  constructor(itemContainerSelector, fullScreenSelector, state,
+    data, globalRecoveredSelector, clickHandler) {
+    super(itemContainerSelector, fullScreenSelector, state, data, clickHandler);
     this.globalRecoveredCountElement = globalRecoveredSelector;
   }
 

@@ -40,6 +40,7 @@ export default class Dashboard {
       this.data.Global.recovered = (this.data.Global.recovered || 0) + (x.recovered || 0);
       this.data.Global.population = (this.data.Global.population || 0) + (x.population || 0);
     });
+    this.fullscreenContainer = new FullscreenContainer(this.menu);
     this.dashboardItems = [
       new GlobalCasesItem(this.globalCases, this.fullscreenContainer, this.state, this.data,
         this.handleList()),
@@ -52,9 +53,8 @@ export default class Dashboard {
       new GlobalMapItem(this.mapContainer, this.fullscreenContainer, this.state,
         this.data, this.handleList()),
       new GlobalChartItem(this.chartContainer, this.fullscreenContainer, this.state,
-        this.data, this.handleList()),
+        this.data, null),
     ];
-    this.fullscreenContainer = new FullscreenContainer(this.menu);
     this.dashboardItems.forEach((el) => new FullscreenButton(el, this.fullscreenContainer));
     this.dashboardItems.forEach((x) => x.updateItemInfo());
     this.handleGridItemClick();
@@ -69,9 +69,7 @@ export default class Dashboard {
     this.searchElement.results.addEventListener('mousedown', (e) => {
       const eventContainer = e.target.closest('.search__link');
       if (eventContainer) {
-        this.menu.region = eventContainer.querySelector('.search__country').innerText;
-        this.menu.isCountry = true;
-        this.menu.setCountryIndication(this.menu.region);
+        this.menu.setCountry(eventContainer.querySelector('.search__country').innerText);
         this.searchElement.clearResults();
         this.searchElement.clearInput();
         this.searchElement.keyboard.properties.value = '';
@@ -84,8 +82,8 @@ export default class Dashboard {
 
   handleState() {
     this.menu.applyButton.addEventListener('mousedown', () => {
+      this.menu.overlay.classList.add('hide');
       const state = this.getStateFromMenu();
-      console.log(state);
       this.menu.menuEl.classList.remove('menu_active');
       this.dashboardItems.forEach((x) => x.updateItemInfo(null, state));
       this.fullscreenContainer.update();
@@ -108,14 +106,14 @@ export default class Dashboard {
     };
   }
 
-  handleGridItemClick() {
-    this.dashboardItems.forEach((x) => {
-      x.itemContainer.addEventListener('gridItemClick', (event) => {
-        this.menu.region = event.detail.country;
-        this.menu.isCountry = true;
-        this.menu.setCountryIndication(this.menu.region);
-        this.menu.applyButton.dispatchEvent(new Event('mousedown'));
-      });
-    });
-  }
+  // handleGridItemClick() {
+  //   this.dashboardItems.forEach((x) => {
+  //     x.itemContainer.addEventListener('gridItemClick', (event) => {
+  //       this.menu.region = event.detail.country;
+  //       this.menu.isCountry = true;
+  //       this.menu.setCountryIndication(this.menu.region);
+  //       this.menu.applyButton.dispatchEvent(new Event('mousedown'));
+  //     });
+  //   });
+  // }
 }
