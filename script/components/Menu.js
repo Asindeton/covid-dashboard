@@ -37,7 +37,6 @@ export default class Menu {
     });
     this.applyButton.addEventListener('click', () => {
       this.menuEl.classList.remove('menu_active');
-      this.overlay.classList.add('hide');
     });
     this.globalModeButton.addEventListener('click', () => {
       this.isCountry = false;

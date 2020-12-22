@@ -82,6 +82,7 @@ export default class Dashboard {
 
   handleState() {
     this.menu.applyButton.addEventListener('mousedown', () => {
+      this.menu.overlay.classList.add('hide');
       const state = this.getStateFromMenu();
       this.menu.menuEl.classList.remove('menu_active');
       this.dashboardItems.forEach((x) => x.updateItemInfo(null, state));
