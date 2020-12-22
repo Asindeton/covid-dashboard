@@ -57,7 +57,7 @@ export default class Dashboard {
     ];
     this.dashboardItems.forEach((el) => new FullscreenButton(el, this.fullscreenContainer));
     this.dashboardItems.forEach((x) => x.updateItemInfo());
-    this.handleGridItemClick();
+    // this.handleGridItemClick();
   }
 
   addEventsHandlers() {

@@ -1,6 +1,5 @@
 // import Chart from 'chart.js';
 
-
 // export default class Graph {
 //   constructor(state, data) {
 //     this.cases = state.cases;
