@@ -2,7 +2,7 @@ export default class FullscreenContainer {
   constructor(menu) {
     this.element = document.querySelector('.fullscreen');
     this.closeButton = this.element.querySelector('.button__close');
-    this.targetElement = null;
+    this.targetObject = null;
     this.menu = menu;
     this.addEventsHandlers();
   }
@@ -10,24 +10,42 @@ export default class FullscreenContainer {
   addEventsHandlers() {
     this.closeButton.addEventListener('click', () => {
       this.element.classList.add('hide');
-      this.targetElement = '';
+      if (this.targetObject.isDrawable) {
+        this.targetObject.itemContainer = this.targetObject.getInitialElement();
+        this.targetObject.updateItemInfo();
+      }
+      this.targetObject = '';
     });
   }
 
-  update(targetContainer = this.targetElement, clickHandler = this.clickHandler) {
-    this.targetElement = targetContainer;
+  setDrawable() {
+    if (this.targetObject.itemContainer !== this.element) {
+      this.targetObject.itemContainer = this.element;
+      this.targetObject.drawElement();
+    }
+  }
+
+  update(targetObject = this.targetObject, clickHandler = this.clickHandler) {
+    this.targetObject = targetObject;
     this.clickHandler = clickHandler;
     this.remove();
-    if (this.targetElement) {
-      this.insertedElement = this.targetElement.cloneNode(true);
-      this.insertedElement.querySelector('.fullscreen__toggle').remove();
+    if (this.targetObject.isDrawable) {
+      this.setDrawable();
+    }
+    if (this.targetObject) {
+      if (!this.targetObject.isDrawable) {
+        this.insertedElement = this.targetObject.getItemContainer().cloneNode(true);
+        this.insertedElement.querySelector('.fullscreen__toggle').remove();
+        this.clickHandler(this.insertedElement);
+        this.element.insertBefore(this.insertedElement, this.element.firstChild);
+      }
       this.element.classList.remove('hide');
-      this.clickHandler(this.insertedElement);
-      this.element.insertBefore(this.insertedElement, this.element.firstChild);
     }
   }
 
   remove() {
-    if (this.insertedElement) this.insertedElement.remove();
+    if (this.element.querySelector('.inside-wrapper')) {
+      this.element.querySelector('.inside-wrapper').remove();
+    }
   }
 }

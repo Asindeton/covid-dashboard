@@ -100,7 +100,9 @@ export default class Dashboard {
     return (htmlElement) => {
       htmlElement.addEventListener('click', (e) => {
         const listLink = e.target.closest('.list__link');
-        menu.setCountry(listLink.lastChild.innerText);
+        if (listLink.lastChild.innerText) {
+          menu.setCountry(listLink.lastChild.innerText);
+        }
         menu.applyButton.dispatchEvent(new Event('mousedown'));
       });
     };

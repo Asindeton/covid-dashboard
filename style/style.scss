@@ -112,7 +112,8 @@ main {
 .header {
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 4;
+  box-shadow: none;
 }
 
 .main {
@@ -296,15 +297,17 @@ main {
 @media (max-width: 767px) {
   .main {
     grid-template-columns: repeat(2, minmax(60px, 1fr));
-    grid-template-rows: repeat(7, 150px);
+    grid-template-rows: repeat(9, 150px);
     grid-template-areas:
       "map map"
       "map map"
       "map map"
       "gc cb"
-      "gp cb"
+      "gc cb"
       "ds ds"
-      "ds ds";
+      "ds ds"
+      "gp gp"
+      "gp gp";
   }
 
   .main-title {
@@ -769,7 +772,7 @@ $red-800: rgb(230, 70, 81);
   align-self: flex-start;
   width: 100vw;
   top: 59px;
-  z-index: 5;
+  z-index: 3;
   height: 44px;
   &__list {
     display: flex;
