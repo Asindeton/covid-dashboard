@@ -1,9 +1,7 @@
 function toGeoJSON(dataArr) {
-  console.log(dataArr);
   const geoJSON = {
     type: 'FeatureCollection',
     features: [
-
     ],
   };
   dataArr.map((data) => {
@@ -34,18 +32,6 @@ function getMarkSize(cases) {
   return cases ** (1 / 4) < 40 ? cases ** (1 / 4) + 25 : cases ** (1 / 4);
 }
 
-function getCountryArr(json) {
-  const arr = [];
-  json.features.map((e) => arr.push(e.properties.country));
-  return arr;
-}
-
-function getLocationArr(json) {
-  const arr = [];
-  json.features.map((e) => arr.push(e.geometry.coordinates));
-  return arr;
-}
-
 function getMapCenter(json, country) {
   const countryArr = [];
   const locationArr = [];
@@ -57,6 +43,17 @@ function getMapCenter(json, country) {
   return locationArr[countryArr.indexOf(country)];
 }
 
+function drawMapFunc(center, DOMElement) {
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYXNpbmRldG9uIiwiYSI6ImNrM3l5eG1oYjBkNTAzbXAzb3N0OWVkcngifQ.9-7d9OiVIiV5KWubQm1KOQ';
+  return new mapboxgl.Map({
+    container: DOMElement?DOMElement:'map',
+    style: 'mapbox://styles/mapbox/light-v10',
+    zoom: 5,
+    center: center?center:[27.559154, 53.900600],
+  });
+}
+
+
 export {
-  toGeoJSON, getMarkSize, getMapCenter,
+  toGeoJSON, getMarkSize, getMapCenter, drawMapFunc,
 };

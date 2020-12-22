@@ -1,29 +1,30 @@
-import { drawMap } from './map';
-import { toGeoJSON, getMarkSize, getMapCenter } from './utils';
-import createHtmlElement from '../../utils/create';
-import { getGraphData } from '../graph/script';
-import DataService from '../DataService';
+import {
+  toGeoJSON, getMarkSize, getMapCenter, drawMapFunc,
+} from '../utils/mapUtils';
+import createHtmlElement from '../utils/create';
+import Graph from './graph/script';
 
 export default class DrawMap {
-  constructor(state) {
+  constructor(state, data) {
+    this.state = state;
     this.cases = state.cases;
     this.population = state.population;
     this.region = state.region;
     this.time = state.time;
+    this.data = data;
+    this.id = state.container || 'map';
   }
 
   async getMapData() {
-    const dataService = new DataService('https://corona.lmao.ninja/v2/countries');
-    this.data = await dataService.getData();
     this.geoJSON = toGeoJSON(this.data);
 
     this.mapCenter = getMapCenter(this.geoJSON, this.region);
-    this.drawMap(this.mapCenter, this.DOMElement);
+    this.drawMap(this.mapCenter, this.id);
     this.drawMarker(this.geoJSON, this.cases, this.population, this.time, this.region);
   }
 
   drawMap(center, DOMElement) {
-    this.map = drawMap(center, DOMElement);
+    this.map = drawMapFunc(center, DOMElement);
     this.map.addControl(new mapboxgl.NavigationControl());
 
     const layers = ['confirmed', 'lethal', 'recovered'];
@@ -80,7 +81,7 @@ export default class DrawMap {
       }
 
       const countryShortCode = marker.properties.countryInfo.iso3;
-      country === region ? getGraphData(countryShortCode) : false;
+      country === region ? new Graph(this.state).getGraphData(countryShortCode) : false;
       const popup = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: false,
@@ -123,12 +124,21 @@ export default class DrawMap {
         this.map.flyTo({
           center: marker.geometry.coordinates,
         });
-        getGraphData(countryShortCode);
+       new Graph(this.state).getGraphData(countryShortCode);
       });
       // add marker to map
       new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .addTo(this.map);
     });
+  }
+
+  getMapContainer() {
+    return `
+        <div id='mapWrapper' class="full-height">
+          <div class="inside-wrapper full-height" id="${this.id}"></div>
+          <div class="map-overlay" id="legend"></div>
+        </div>
+    `;
   }
 }
