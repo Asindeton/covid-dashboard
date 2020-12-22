@@ -2,7 +2,7 @@ import {
   toGeoJSON, getMarkSize, getMapCenter, drawMapFunc,
 } from '../utils/mapUtils';
 import createHtmlElement from '../utils/create';
-import Graph from './graph/script';
+// import Graph from './graph/script';
 
 export default class DrawMap {
   constructor(state, data) {
@@ -81,7 +81,7 @@ export default class DrawMap {
       }
 
       const countryShortCode = marker.properties.countryInfo.iso3;
-      country === region ? new Graph(this.state).getGraphData(countryShortCode) : false;
+      // country === region ? new Graph(this.state).getGraphData(countryShortCode) : false;
       const popup = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: false,
@@ -124,7 +124,7 @@ export default class DrawMap {
         this.map.flyTo({
           center: marker.geometry.coordinates,
         });
-       new Graph(this.state).getGraphData(countryShortCode);
+      //  new Graph(this.state).getGraphData(countryShortCode);
       });
       // add marker to map
       new mapboxgl.Marker(el)
