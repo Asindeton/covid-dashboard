@@ -43,6 +43,10 @@ main {
   position: relative;
 }
 
+canvas {
+  outline: none;
+}
+
 .fullscreen__toggle {
   background: url("../assets/img/fullscreen-icon_inv.png");
   width: 25px;
@@ -768,12 +772,14 @@ $red-800: rgb(230, 70, 81);
 
 .state {
   position: sticky;
+  margin-top: 5px;
   margin-bottom: auto;
   align-self: flex-start;
   width: 100vw;
   top: 59px;
   z-index: 3;
-  height: 44px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
   &__list {
     display: flex;
     justify-content: space-around;
