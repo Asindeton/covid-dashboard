@@ -13,6 +13,7 @@ export default class Menu {
     this.applyButton = document.querySelector('.menu__apply');
     this.globalModeButton = document.querySelector('.mode__global');
     this.countryModeButton = document.querySelector('.mode__country');
+    this.overlay = document.querySelector('.overlay');
     this.regionEl = null;
     this.region = null;
     this.isCountry = false;
@@ -21,14 +22,21 @@ export default class Menu {
   }
 
   addEventHandlers() {
+    this.overlay.addEventListener('click', () => {
+      this.menuEl.classList.remove('menu_active');
+      this.overlay.classList.add('hide');
+    });
     this.showButton.addEventListener('click', () => {
       this.menuEl.classList.add('menu_active');
+      this.overlay.classList.remove('hide');
     });
     this.closeButton.addEventListener('click', () => {
       this.menuEl.classList.remove('menu_active');
+      this.overlay.classList.add('hide');
     });
     this.applyButton.addEventListener('click', () => {
       this.menuEl.classList.remove('menu_active');
+      this.overlay.classList.add('hide');
     });
     this.globalModeButton.addEventListener('click', () => {
       this.isCountry = false;
@@ -66,7 +74,9 @@ export default class Menu {
         el.closest('.mode-changer__button').classList.remove('mode-changer__button_active');
       }
     });
-    this.countryModeButton.querySelector('.flag').src = `https://www.countryflags.io/${getCountryCode(countryName, countries)}/flat/32.png`;
+    let flag = null;
+    if (getCountryCode(countryName, countries)) flag = `https://www.countryflags.io/${getCountryCode(countryName, countries)}/flat/32.png`;
+    this.countryModeButton.querySelector('.flag').src = flag;
   }
 
   getState() {
@@ -85,9 +95,11 @@ export default class Menu {
     countries.forEach((el) => {
       const countryNameEl = createHtmlElement('span', 'country');
       countryNameEl.innerText = el.name;
+      let flag = null;
+      if (el.code) flag = `https://www.countryflags.io/${el.code}/flat/32.png`;
       createHtmlElement('li', 'list__link country-changer__country', [
         createHtmlElement('button', 'mode-changer__button mode-changer__country', [
-          createHtmlElement('img', 'flag flag__mode', null, null, ['src', `https://www.countryflags.io/${el.code}/flat/32.png`]),
+          createHtmlElement('img', 'flag flag__mode', null, null, ['src', flag]),
           countryNameEl,
         ], null, ['value', el.name]),
       ], this.countryList);
