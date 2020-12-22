@@ -27,11 +27,11 @@ export default class GlobalChartItem extends DashboardItem {
       } else if (this.state.cases === 'lethal') {
         this.color = 'black';
         this.legend = 'lethal';
-        this.chartData = commits.cases ? commits.cases : commits.timeline.deaths;
+        this.chartData = commits.deaths ? commits.deaths : commits.timeline.deaths;
       } else if (this.state.cases === 'recovered') {
         this.color = '#24a319';
         this.legend = 'recovered';
-        this.chartData = commits.cases ? commits.cases : commits.timeline.recovered;
+        this.chartData = commits.recovered ? commits.recovered : commits.timeline.recovered;
       }
       this.drawElement(this.itemContainer);
     } else {
