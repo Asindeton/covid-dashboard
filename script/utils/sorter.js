@@ -1,6 +1,10 @@
-export default function sort(array, sortByField) {
+import { numberFormatter } from './formatter';
+
+export default function sort(array, sortByField, statePopulation) {
   array.sort((a, b) => {
-    if (sortByField(b) === sortByField(a)) {
+    const fieldB = numberFormatter(sortByField(b), statePopulation, b.population);
+    const fieldA = numberFormatter(sortByField(a), statePopulation, a.population);
+    if (fieldB === fieldA) {
       if (a.country > b.country) {
         return 1;
       }
@@ -9,11 +13,10 @@ export default function sort(array, sortByField) {
       }
       return 0;
     }
-
-    if (sortByField(b) > sortByField(a)) {
+    if (fieldB > fieldA) {
       return 1;
     }
-    if (sortByField(b) < sortByField(a)) {
+    if (fieldB < fieldA) {
       return -1;
     }
     return 0;

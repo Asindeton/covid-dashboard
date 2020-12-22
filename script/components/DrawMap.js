@@ -124,7 +124,7 @@ export default class DrawMap {
         this.map.flyTo({
           center: marker.geometry.coordinates,
         });
-       new Graph(this.state).getGraphData(countryShortCode);
+        new Graph(this.state).getGraphData(countryShortCode);
       });
       // add marker to map
       new mapboxgl.Marker(el)

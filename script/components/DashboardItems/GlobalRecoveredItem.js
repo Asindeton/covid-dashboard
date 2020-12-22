@@ -1,6 +1,6 @@
 import DashboardItem from './DashboardItem';
 import GridItem from '../GridItems/GridItem';
-import numberFormatter from '../../utils/formatter';
+import { numberFormatterToString } from '../../utils/formatter';
 import sorter from '../../utils/sorter';
 
 export default class GlobalRecoveredItem extends DashboardItem {
@@ -13,14 +13,15 @@ export default class GlobalRecoveredItem extends DashboardItem {
   updateItemInfo(data, state) {
     super.updateItemInfo(data, state);
     const getNumber = (x) => (this.state.time === 'lastDay' ? x.todayRecovered : x.recovered);
-    this.globalRecoveredCountElement.innerHTML = numberFormatter(getNumber(this.data.Global),
-      this.state.population, this.data.Global.population);
+    this.globalRecoveredCountElement.innerHTML = numberFormatterToString(
+      getNumber(this.data.Global), this.state.population, this.data.Global.population,
+    );
     this.itemContainer.innerHTML = '';
-    sorter(this.data, getNumber);
+    sorter(this.data, getNumber, this.state.population);
     for (let i = 0; i < this.data.length; i += 1) {
-      if (getNumber(this.data[i]) > 0
+      if (getNumber(this.data[i]) > 0 && this.data[i].population > 0
       && (!this.state.region || this.data[i].country === this.state.region)) {
-        this.itemContainer.append((new GridItem('cases cases_recovered', numberFormatter(getNumber(this.data[i]),
+        this.itemContainer.append((new GridItem('cases cases_recovered', numberFormatterToString(getNumber(this.data[i]),
           this.state.population, this.data[i].population), this.data[i].country)).gridItem);
       }
     }
