@@ -37,6 +37,7 @@ body {
 }
 
 main {
+  margin-bottom: auto;
   display: flex;
   justify-content: center;
   position: relative;
@@ -120,7 +121,7 @@ main {
   margin: 0 auto;
   padding: 10px;
   grid-template-columns: repeat(11, minmax(90px, 150px));
-  grid-template-rows: repeat(6, minmax(75px, 100px));
+  grid-template-rows: repeat(6, minmax(75px, 90px));
   grid-template-areas:
     "gc gc map map map map map map ds ds ds"
     "gc gc map map map map map map ds ds ds"
@@ -760,4 +761,41 @@ $red-800: rgb(230, 70, 81);
   width: 100vw;
   z-index: 6;
   opacity: 0.12;
+}
+
+.state {
+  position: sticky;
+  margin-bottom: auto;
+  align-self: flex-start;
+  width: 100vw;
+  top: 59px;
+  z-index: 5;
+  height: 44px;
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+  }
+
+  &__link {
+    text-align: center;
+    font-weight: 900;
+  }
+
+  &__text {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  &__cases {
+  }
+
+  &__population {
+  }
+
+  &__time {
+  }
+
+  &__region {
+  }
 }

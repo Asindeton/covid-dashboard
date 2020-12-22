@@ -14,6 +14,7 @@ export default class Menu {
     this.globalModeButton = document.querySelector('.mode__global');
     this.countryModeButton = document.querySelector('.mode__country');
     this.overlay = document.querySelector('.overlay');
+    this.stateEl = document.querySelector('.state');
     this.regionEl = null;
     this.region = null;
     this.isCountry = false;
@@ -79,9 +80,19 @@ export default class Menu {
     this.countryModeButton.querySelector('.flag').src = flag;
   }
 
+  setStateEl(state) {
+    this.stateEl.querySelector('.state__cases').innerText = state.cases[0].toUpperCase() + state.cases.slice(1);
+    this.stateEl.querySelector('.state__population').innerText = state.population
+      === 'formatted' ? 'Per 100 000 people' : 'Absolute';
+    this.stateEl.querySelector('.state__time').innerText = state.time === 'allTime'
+      ? 'All time' : 'Last day';
+    this.stateEl.querySelector('.state__region').innerText = state.region ? state.region : 'World';
+  }
+
   getState() {
     const formData = parseFormData(new FormData(this.formEl));
     formData.region = this.isCountry ? this.region : '';
+    this.setStateEl(formData);
     return formData;
   }
 
