@@ -29,11 +29,10 @@ export default class FullscreenContainer {
     this.targetObject = targetObject;
     this.clickHandler = clickHandler;
     this.remove();
-    if (this.targetObject.isDrawable) {
-      this.setDrawable();
-    }
     if (this.targetObject) {
-      if (!this.targetObject.isDrawable) {
+      if (this.targetObject.isDrawable) {
+        this.setDrawable();
+      } else {
         this.insertedElement = this.targetObject.getItemContainer().cloneNode(true);
         this.insertedElement.querySelector('.fullscreen__toggle').remove();
         this.clickHandler(this.insertedElement);
