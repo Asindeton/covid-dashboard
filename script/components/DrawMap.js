@@ -120,11 +120,15 @@ export default class DrawMap {
         this.map.getCanvas().style.cursor = '';
         popup.remove();
       });
-      el.addEventListener('click', () => {
+      el.addEventListener('click', (event) => {
         this.map.flyTo({
           center: marker.geometry.coordinates,
         });
-      //  new Graph(this.state).getGraphData(countryShortCode);
+        //  new Graph(this.state).getGraphData(countryShortCode);
+        event.target.dispatchEvent(new CustomEvent('markerClick', {
+          bubbles: true,
+          detail: { country: marker.properties.country },
+        }));
       });
       // add marker to map
       new mapboxgl.Marker(el)

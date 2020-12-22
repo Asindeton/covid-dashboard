@@ -51,13 +51,12 @@ export default class Dashboard {
       new GlobalRecoveredItem(this.globalRecoveredContainer, this.fullscreenContainer, this.state,
         this.data, this.globalRecovered, this.handleList()),
       new GlobalMapItem(this.mapContainer, this.fullscreenContainer, this.state,
-        this.data, this.handleList()),
+        this.data, this.handleMap()),
       new GlobalChartItem(this.chartContainer, this.fullscreenContainer, this.state,
         this.data, null),
     ];
     this.dashboardItems.forEach((el) => new FullscreenButton(el, this.fullscreenContainer));
     this.dashboardItems.forEach((x) => x.updateItemInfo());
-    // this.handleGridItemClick();
   }
 
   addEventsHandlers() {
@@ -108,14 +107,13 @@ export default class Dashboard {
     };
   }
 
-  // handleGridItemClick() {
-  //   this.dashboardItems.forEach((x) => {
-  //     x.itemContainer.addEventListener('gridItemClick', (event) => {
-  //       this.menu.region = event.detail.country;
-  //       this.menu.isCountry = true;
-  //       this.menu.setCountryIndication(this.menu.region);
-  //       this.menu.applyButton.dispatchEvent(new Event('mousedown'));
-  //     });
-  //   });
-  // }
+  handleMap() {
+    const { menu } = this;
+    return (htmlElement) => {
+      htmlElement.addEventListener('markerClick', (e) => {
+        menu.setCountry(e.detail.country);
+        menu.applyButton.dispatchEvent(new Event('mousedown'));
+      });
+    };
+  }
 }
