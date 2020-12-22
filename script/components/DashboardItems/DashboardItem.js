@@ -1,5 +1,6 @@
 export default class DashboardItem {
   constructor(itemContainerSelector, fullScreenSelector, state, data, clickHandler) {
+    console.log(arguments);
     this.itemContainer = itemContainerSelector;
     this.htmlContainer = this.itemContainer.closest('.container');
     this.fullScreen = fullScreenSelector;

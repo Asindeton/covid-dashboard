@@ -40,6 +40,7 @@ export default class Dashboard {
       this.data.Global.recovered = (this.data.Global.recovered || 0) + (x.recovered || 0);
       this.data.Global.population = (this.data.Global.population || 0) + (x.population || 0);
     });
+    this.fullscreenContainer = new FullscreenContainer(this.menu);
     this.dashboardItems = [
       new GlobalCasesItem(this.globalCases, this.fullscreenContainer, this.state, this.data,
         this.handleList()),
@@ -54,7 +55,6 @@ export default class Dashboard {
       new GlobalChartItem(this.chartContainer, this.fullscreenContainer, this.state,
         this.data, null),
     ];
-    this.fullscreenContainer = new FullscreenContainer(this.menu);
     this.dashboardItems.forEach((el) => new FullscreenButton(el, this.fullscreenContainer));
     this.dashboardItems.forEach((x) => x.updateItemInfo());
     this.handleGridItemClick();
