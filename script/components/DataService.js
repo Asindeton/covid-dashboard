@@ -12,11 +12,6 @@ export default class DataService {
       const data = await response.json();
       return data;
     }
-    console.log(`Error ${response}`);
     return [];
   }
-
-  // async getDataForCountries() {
-  //   return this.getData('https://api.covid19api.com/summary');
-  // }
 }

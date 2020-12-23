@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import mapboxgl from 'mapbox-gl';
 import {
   toGeoJSON, getMarkSize, getMapCenter, drawMapFunc,

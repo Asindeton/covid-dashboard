@@ -18,14 +18,14 @@ export default class GlobalMapItem extends DashboardItem {
     return this.initialEl;
   }
 
-  removeElement() {
+  static removeElement() {
     if (document.getElementById('mapWrapper')) {
       document.getElementById('mapWrapper').remove();
     }
   }
 
   drawElement(container = this.itemContainer) {
-    this.removeElement();
+    GlobalMapItem.removeElement();
     this.itemContainer = container;
     createHtmlElement('div', 'full-height', [
       createHtmlElement('div', 'inside-wrapper full-height', null, null, ['id', 'map']),
