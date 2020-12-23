@@ -22,6 +22,9 @@ export default class FullscreenContainer {
     if (this.targetObject.itemContainer !== this.element) {
       this.targetObject.itemContainer = this.element;
       this.targetObject.drawElement();
+      if (this.clickHandler) {
+        this.clickHandler(this.element);
+      }
     }
   }
 

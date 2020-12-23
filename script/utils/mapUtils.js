@@ -39,20 +39,18 @@ function getMapCenter(json, country) {
     countryArr.push(e.properties.country);
     locationArr.push(e.geometry.coordinates);
   });
-
   return locationArr[countryArr.indexOf(country)];
 }
 
-function drawMapFunc(center, DOMElement) {
+function drawMapFunc(center, mapContainerId) {
   mapboxgl.accessToken = 'pk.eyJ1IjoiYXNpbmRldG9uIiwiYSI6ImNrM3l5eG1oYjBkNTAzbXAzb3N0OWVkcngifQ.9-7d9OiVIiV5KWubQm1KOQ';
   return new mapboxgl.Map({
-    container: DOMElement?DOMElement:'map',
+    container: mapContainerId || 'map',
     style: 'mapbox://styles/mapbox/light-v10',
     zoom: 5,
-    center: center?center:[27.559154, 53.900600],
+    center: center || [27.559154, 53.900600],
   });
 }
-
 
 export {
   toGeoJSON, getMarkSize, getMapCenter, drawMapFunc,
