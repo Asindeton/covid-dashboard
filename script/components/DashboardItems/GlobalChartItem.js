@@ -92,15 +92,13 @@ export default class GlobalChartItem extends DashboardItem {
           ticks: {
             beginAtZero: true,
             callback(value) {
-              let answer = '';
               if (value >= 1000000) {
-                answer = `${(value / 1000000).toFixed(1)}M`;
-              } else if (value >= 1000) {
-                answer = `${(value / 1000)}k`;
-              } else {
-                answer = `${value}`;
+                return `${(value / 1000000).toFixed(1)}M`;
+              } 
+              if (value >= 1000) {
+                return `${(value / 1000)}k`;
               }
-              return answer;
+              return value;
             },
           },
         }],
