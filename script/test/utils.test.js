@@ -4,7 +4,7 @@ import sort from '../utils/sorter';
 import DataService from '../components/DataService';
 import countries from '../components/Countries';
 
-test('getMarkSize', () => {
+test('getCountryCode', () => {
   expect(getCountryCode('Belarus', countries)).toBe('BY');
   expect(getCountryCode('Russia', countries)).toBeDefined();
 });
