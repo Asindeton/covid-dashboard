@@ -7,14 +7,6 @@ export default class GridItem {
         createHtmlElement('span', classes, number, null),
         createHtmlElement('span', '', text, null),
       ], null);
-    this.gridItem.onclick = this.gridItemClick.bind(this);
     this.country = text;
-  }
-
-  gridItemClick() {
-    this.gridItem.dispatchEvent(new CustomEvent('gridItemClick', {
-      bubbles: true,
-      detail: { country: this.country },
-    }));
   }
 }
