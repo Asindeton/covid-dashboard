@@ -78,6 +78,7 @@ export default class GlobalChartItem extends DashboardItem {
           xAxisID: '',
         }],
       },
+<<<<<<< Updated upstream
       options: {
         maintainAspectRatio: false,
         aspectRatio: 1,
@@ -101,6 +102,31 @@ export default class GlobalChartItem extends DashboardItem {
                 }
                 return answer;
               },
+=======
+      options: {},
+    });
+    myChart.options = {
+      maintainAspectRatio: false,
+      aspectRatio: 1,
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            callback(value) {
+              let answer = '';
+              if (value >= 1000000) {
+                answer = `${(value / 1000000).toFixed(1)}M`;
+              } else if (value >= 1000) {
+                answer = `${(value / 1000)}k`;
+              } else {
+                answer = `${value}`;
+              }
+              return answer;
+>>>>>>> Stashed changes
             },
           }],
         },
