@@ -395,7 +395,8 @@ canvas {
   position: relative;
 
   &__input {
-    margin-left: 10px;
+    padding-left: 15px;
+    width: 150px;
     height: 20px;
     background: transparent;
     border: none;
@@ -796,17 +797,5 @@ $red-800: rgb(230, 70, 81);
   &__text {
     font-style: italic;
     font-weight: 400;
-  }
-
-  &__cases {
-  }
-
-  &__population {
-  }
-
-  &__time {
-  }
-
-  &__region {
   }
 }
