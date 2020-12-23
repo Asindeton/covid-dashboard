@@ -167,7 +167,7 @@ export default class Keyboard {
     // Automatically use keyboard for elements with .use-keyboard-input
     document.querySelectorAll('.use-keyboard-input').forEach((element) => {
       element.addEventListener('focus', () => {
-        this.open(this.properties.value, (currentValue) => {
+        this.open(this.properties.value, () => {
           element.selectionEnd = this.properties.cursorPos;
           element.selectionStart = element.selectionEnd;
           const container = (this.properties.value
