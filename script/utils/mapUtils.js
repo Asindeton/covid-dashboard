@@ -1,10 +1,12 @@
+import mapboxgl from 'mapbox-gl';
+
 function toGeoJSON(dataArr) {
   const geoJSON = {
     type: 'FeatureCollection',
     features: [
     ],
   };
-  dataArr.map((data) => {
+  dataArr.forEach((data) => {
     geoJSON.features.push({
       type: 'Feature',
       properties: {
@@ -35,7 +37,7 @@ function getMarkSize(cases) {
 function getMapCenter(json, country) {
   const countryArr = [];
   const locationArr = [];
-  json.features.map((e) => {
+  json.features.forEach((e) => {
     countryArr.push(e.properties.country);
     locationArr.push(e.geometry.coordinates);
   });

@@ -65,6 +65,7 @@ export default class GlobalChartItem extends DashboardItem {
     this.insideWrapper.append(this.canvas);
     container.prepend(this.insideWrapper);
     const ctx = this.canvas.getContext('2d');
+    // eslint-disable-next-line no-unused-vars
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
