@@ -1,5 +1,6 @@
 import Chart from 'chart.js';
 import DashboardItem from './DashboardItem';
+import { numberFormatter } from '../../utils/formatter';
 
 export default class GlobalChartItem extends DashboardItem {
   constructor(itemContainerSelector, fullScreenSelector, state, data, clickHandler) {
@@ -10,7 +11,6 @@ export default class GlobalChartItem extends DashboardItem {
 
   updateItemInfo(data, state) {
     super.updateItemInfo(data, state);
-    this.removeElement();
     this.getGraphData(this.state.region);
   }
 
@@ -19,20 +19,28 @@ export default class GlobalChartItem extends DashboardItem {
     const response = await fetch(url);
     if (response.ok) {
       const commits = await response.json();
+      let { population } = this.data.Global;
+      if (country) {
+        population = this.data.filter((el) => el.country === country);
+        population = population[0].population;
+      }
       this.title = commits.country || 'All World';
       if (this.state.cases === 'confirmed') {
         this.color = 'rgb(230, 70, 81)';
-        this.legend = 'confirmed';
+        this.legend = 'Confirmed';
         this.chartData = commits.cases ? commits.cases : commits.timeline.cases;
       } else if (this.state.cases === 'lethal') {
         this.color = 'black';
-        this.legend = 'lethal';
+        this.legend = 'Lethal';
         this.chartData = commits.deaths ? commits.deaths : commits.timeline.deaths;
       } else if (this.state.cases === 'recovered') {
         this.color = '#24a319';
-        this.legend = 'recovered';
+        this.legend = 'Recovered';
         this.chartData = commits.recovered ? commits.recovered : commits.timeline.recovered;
       }
+      Object.entries(this.chartData).forEach(([key, value]) => {
+        this.chartData[key] = numberFormatter(value, this.state.population, population);
+      });
       this.drawElement(this.itemContainer);
     } else {
       alert(`Sorry, there is no data for this country. Error: ${response.status}`);
@@ -40,7 +48,7 @@ export default class GlobalChartItem extends DashboardItem {
   }
 
   removeElement() {
-    if (this.itemContainer.querySelector('.inside-wrapper')) this.itemContainer.querySelector('.inside-wrapper').remove();
+    if (this.itemContainer.querySelector('.inside-wrapper')) this.itemContainer.querySelectorAll('.inside-wrapper').forEach((el) => el.remove());
   }
 
   getInitialElement() {
@@ -48,6 +56,7 @@ export default class GlobalChartItem extends DashboardItem {
   }
 
   drawElement(container = this.itemContainer) {
+    this.removeElement();
     this.itemContainer = container;
     this.insideWrapper = document.createElement('div');
     this.canvas = document.createElement('canvas');
@@ -85,7 +94,7 @@ export default class GlobalChartItem extends DashboardItem {
                 if (value > 1000) {
                   answer = `${Math.ceil(value / 1000)}k`;
                 } if (value > 1000000) {
-                  answer = `${Math.ceil(value / 1000000)} M`;
+                  answer = `${Math.ceil(value / 1000000)}M`;
                 } else {
                   answer = `${value}`;
                 }
