@@ -20,7 +20,6 @@ export default class FullscreenButton {
 
   addButtonActivity() {
     this.fullscreenButton.addEventListener('click', () => {
-      console.log('clicked');
       this.fullscreenObject.update(this.targetObject,
         this.targetObject.clickHandler);
     });

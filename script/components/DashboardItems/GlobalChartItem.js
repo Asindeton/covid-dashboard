@@ -43,7 +43,8 @@ export default class GlobalChartItem extends DashboardItem {
       });
       this.drawElement(this.itemContainer);
     } else {
-      alert(`Sorry, there is no data for this country. Error: ${response.status}`);
+      // eslint-disable-next-line no-alert
+      alert(`Sorry, there is no chart data for this country. Error: ${response.status}`);
     }
   }
 
@@ -77,38 +78,38 @@ export default class GlobalChartItem extends DashboardItem {
           xAxisID: '',
         }],
       },
-      options: {
-        maintainAspectRatio: false,
-        aspectRatio: 1,
-        tooltips: {
-          mode: 'index',
-          intersect: false,
-        },
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              // Include a dollar sign in the ticks
-              callback(value) {
-                let answer = '';
-                if (value > 1000) {
-                  answer = `${Math.ceil(value / 1000)}k`;
-                } if (value > 1000000) {
-                  answer = `${Math.ceil(value / 1000000)}M`;
-                } else {
-                  answer = `${value}`;
-                }
-                return answer;
-              },
-            },
-          }],
-        },
-        title: {
-          display: true,
-          text: `${this.title}`,
-          fontSize: 21,
-        },
-      },
+      options: {},
     });
+    myChart.options = {
+      maintainAspectRatio: false,
+      aspectRatio: 1,
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            callback(value) {
+              let answer = '';
+              if (value > 1000) {
+                answer = `${Math.ceil(value / 1000)}k`;
+              } if (value > 1000000) {
+                answer = `${Math.ceil(value / 1000000)}M`;
+              } else {
+                answer = `${value}`;
+              }
+              return answer;
+            },
+          },
+        }],
+      },
+      title: {
+        display: true,
+        text: `${this.title}`,
+        fontSize: 21,
+      },
+    };
   }
 }

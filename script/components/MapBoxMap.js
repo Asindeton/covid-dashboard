@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-unresolved
+import mapboxgl from 'mapbox-gl';
 import {
   toGeoJSON, getMarkSize, getMapCenter, drawMapFunc,
 } from '../utils/mapUtils';
@@ -40,21 +42,21 @@ export default class MapBoxMap {
 
   drawMarker(date, val, population, time) {
     date.features.forEach((marker) => {
-      const getNumber = (displayType, time) => {
+      const getNumber = (displayType, stateTime) => {
         switch (displayType) {
           case 'confirmed':
             return {
-              numberCount: time === 'allTime' ? marker.properties.cases : marker.properties.todayCases,
+              numberCount: stateTime === 'allTime' ? marker.properties.cases : marker.properties.todayCases,
               displayTypeColor: 'rgb(230, 70, 81)',
             };
           case 'lethal':
             return {
-              numberCount: time === 'allTime' ? marker.properties.deaths : marker.properties.todayDeaths,
+              numberCount: stateTime === 'allTime' ? marker.properties.deaths : marker.properties.todayDeaths,
               displayTypeColor: 'black',
             };
           case 'recovered':
             return {
-              numberCount: time === 'allTime' ? marker.properties.recovered : marker.properties.todayRecovered,
+              numberCount: stateTime === 'allTime' ? marker.properties.recovered : marker.properties.todayRecovered,
               displayTypeColor: '#24a319',
             };
           default:

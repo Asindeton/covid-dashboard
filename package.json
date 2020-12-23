@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "watch": "webpack --watch",
-    "eslint": "eslint src",
+    "eslint": "eslint script",
     "fix": "eslint --fix src",
     "server": "webpack serve",
     "test": "jest"
@@ -46,7 +46,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
-    "chart.js": "^2.9.4"
+    "chart.js": "^2.9.4",
+    "mapbox-gl": "^2.0.0"
   },
   "homepage": "https://github.com/Asindeton/covid-dashboard#readme"
 }
