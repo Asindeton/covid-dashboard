@@ -93,10 +93,11 @@ export default class GlobalChartItem extends DashboardItem {
             beginAtZero: true,
             callback(value) {
               let answer = '';
-              if (value > 1000) {
-                answer = `${Math.ceil(value / 1000)}k`;
-              } if (value > 1000000) {
+              console.log(value);
+              if (value > 1000000) {
                 answer = `${Math.ceil(value / 1000000)}M`;
+              } else if (value > 1000) {
+                answer = `${Math.ceil(value / 1000)}k`;
               } else {
                 answer = `${value}`;
               }
