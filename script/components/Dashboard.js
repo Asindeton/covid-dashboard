@@ -84,8 +84,8 @@ export default class Dashboard {
       this.menu.overlay.classList.add('hide');
       const state = this.getStateFromMenu();
       this.menu.menuEl.classList.remove('menu_active');
-      this.dashboardItems.forEach((x) => x.updateItemInfo(null, state));
       this.fullscreenContainer.update();
+      this.dashboardItems.forEach((x) => x.updateItemInfo(null, state));
       this.state = state;
     });
   }
